@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Robotics at Null Set Labs</title>
+
+<!-- Google Analytics (gtag.js) - shared Null Set Labs property -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R1S9F2Z4HS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-R1S9F2Z4HS');
+</script>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://robotics.nullsetlabs.org/">
+<meta property="og:title" content="Robotics at Null Set Labs">
+<meta property="og:description" content="Open tools and quantitative research for the VEX competition community, plus lunar plant biology.">
+<meta property="og:image" content="https://robotics.nullsetlabs.org/og-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Null Set Labs">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Robotics at Null Set Labs">
+<meta name="twitter:description" content="Open tools and quantitative research for the VEX competition community, plus lunar plant biology.">
+<meta name="twitter:image" content="https://robotics.nullsetlabs.org/og-preview.png">
+
+<!-- General Meta -->
+<meta name="description" content="Robotics work at Null Set Labs spans the VEX competition ecosystem and broader robotics inquiry, including a lunar plant biology concept under the Artemis track.">
+<meta name="author" content="Arjun Mohanan">
+<link rel="canonical" href="https://robotics.nullsetlabs.org/">
+<meta name="keywords" content="Null Set Labs, Robotics, VEX Visualizer, VEX Research, LEAF-Link, Artemis, Override, competition robotics">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0a0a0f">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="https://nullsetlabs.org/brand-assets/favicons/favicon.svg">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="https://nullsetlabs.org/brand-assets/favicons/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://nullsetlabs.org/brand-assets/favicons/apple-touch-icon.png">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #15151d;
+    --surface-2: #1d1d27;
+    --border: #26262f;
+    --border-strong: #353541;
+    --text: #ededeb;
+    --text-dim: #8a8a92;
+    --text-dimmer: #5e5e66;
+    --accent: #c19a5b;
+    --accent-bright: #d4b076;
+    --accent-soft: rgba(193, 154, 91, 0.12);
+    --accent-border: rgba(193, 154, 91, 0.28);
+    --brand-blue: #3b82f6;
+    --live: #4ade80;
+    --live-bg: rgba(74, 222, 128, 0.12);
+    --progress: #fbbf24;
+    --progress-bg: rgba(251, 191, 36, 0.12);
+    --max-width: 1080px;
+    --max-text: 680px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--accent-soft); color: var(--accent-bright); }
+
+  /* TOP NAV */
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topnav-inner {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Newsreader', serif; font-weight: 500; font-size: 17px;
+    letter-spacing: 0.2px; color: var(--text);
+  }
+  .nav-brand-glyph { width: 22px; height: 22px; color: var(--accent); }
+  .nav-section {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px;
+  }
+  .nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; color: var(--text-dim); }
+  .nav-links a { transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 80px 24px 56px;
+    text-align: center;
+  }
+  .hero-icon {
+    width: 64px; height: 64px;
+    color: var(--accent);
+    margin: 0 auto 22px;
+    display: block;
+    filter: drop-shadow(0 2px 12px rgba(193, 154, 91, 0.18));
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: 'Newsreader', serif; font-weight: 500;
+    font-size: clamp(40px, 6vw, 60px);
+    letter-spacing: -0.8px; color: var(--text);
+    margin-bottom: 22px; line-height: 1.08;
+  }
+  .hero-tagline {
+    font-family: 'Newsreader', serif; font-weight: 400; font-style: italic;
+    font-size: clamp(19px, 2.3vw, 24px);
+    color: var(--text-dim); max-width: 640px; margin: 0 auto 28px;
+    line-height: 1.45;
+  }
+  .hero-body {
+    font-family: 'Newsreader', serif; font-weight: 400;
+    font-size: 18px; color: var(--text-dim);
+    max-width: 640px; margin: 0 auto; line-height: 1.6;
+  }
+
+  /* MOTIF */
+  .motif-wrap {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 16px 24px 16px;
+    display: flex; justify-content: center;
+  }
+  .motif {
+    width: 100%; max-width: 520px;
+    aspect-ratio: 5 / 2;
+    display: block;
+  }
+
+  /* SECTIONS */
+  section { max-width: var(--max-width); margin: 0 auto; padding: 56px 24px; }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Newsreader', serif; font-weight: 500;
+    font-size: clamp(28px, 3.5vw, 38px);
+    letter-spacing: -0.4px; color: var(--text);
+    margin-bottom: 32px; line-height: 1.15;
+  }
+
+  /* CARDS */
+  .cards-single { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; transition: all 0.25s ease;
+    display: flex; flex-direction: column; overflow: hidden; position: relative;
+  }
+  .project-card:hover {
+    border-color: var(--accent-border); background: var(--surface-2);
+    transform: translateY(-2px);
+  }
+  .project-content { padding: 22px 26px 24px; }
+  .project-card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; margin-bottom: 8px; flex-wrap: wrap;
+  }
+  .project-name {
+    font-family: 'Newsreader', serif; font-weight: 500;
+    font-size: 22px; color: var(--text); letter-spacing: -0.2px;
+  }
+  .project-subtitle { font-size: 14px; color: var(--text-dim); line-height: 1.5; margin-bottom: 14px; }
+  .project-meta { display: flex; align-items: center; gap: 16px; font-size: 12px; color: var(--text-dimmer); font-family: 'JetBrains Mono', monospace; }
+  .project-link { color: var(--accent); }
+  .project-link::after { content: ' \2197'; font-family: 'Inter', sans-serif; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 10px; border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap;
+  }
+  .pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
+  .pill-live { background: var(--live-bg); color: var(--live); }
+  .pill-live::before { background: var(--live); box-shadow: 0 0 8px var(--live); }
+  .pill-progress { background: var(--progress-bg); color: var(--progress); }
+  .pill-progress::before { background: var(--progress); }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 48px 24px 36px; }
+  .footer-inner {
+    max-width: var(--max-width); margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    font-size: 12px; color: var(--text-dimmer); font-family: 'JetBrains Mono', monospace;
+  }
+  .footer-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Newsreader', serif; font-size: 16px; color: var(--text-dim);
+    transition: color 0.2s;
+  }
+  .footer-brand:hover { color: var(--accent); }
+  .footer-brand-glyph { width: 18px; height: 18px; color: var(--accent); }
+
+  @media (max-width: 768px) {
+    .topnav-inner { padding: 12px 20px; gap: 12px; }
+    .nav-links { gap: 18px; font-size: 13px; }
+    .hero { padding: 56px 20px 40px; }
+    .hero h1 { font-size: 36px; }
+    .hero-tagline { font-size: 18px; }
+    .hero-body { font-size: 16px; }
+    section { padding: 40px 20px; }
+    .project-content { padding: 18px 20px 20px; }
+    .project-name { font-size: 20px; }
+  }
+  @media (max-width: 480px) {
+    .nav-section { display: none; }
+    .nav-links a:not(:last-child) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="https://nullsetlabs.org/" class="nav-brand" aria-label="Null Set Labs home">
+      <svg class="nav-brand-glyph" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="navSlashGradient" x1="20%" y1="80%" x2="80%" y2="20%">
+            <stop offset="0%" stop-color="#3b82f6"/>
+            <stop offset="100%" stop-color="#c19a5b"/>
+          </linearGradient>
+        </defs>
+        <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <line x1="5.5" y1="18.5" x2="18.5" y2="5.5" stroke="url(#navSlashGradient)" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      Null Set Labs
+    </a>
+    <span class="nav-section">Robotics</span>
+    <div class="nav-links">
+      <a href="#active">Active</a>
+      <a href="#artemis">Artemis</a>
+      <a href="#open">Open</a>
+      <a href="https://nullsetlabs.org/">Back to nullsetlabs.org</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <!-- Pillar icon: cog (Lucide-derived) -->
+  <svg class="hero-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="3"/>
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+  </svg>
+  <div class="hero-eyebrow">Pillar at Null Set Labs</div>
+  <h1>Robotics</h1>
+  <p class="hero-tagline">Competition tooling, statistical research, and broader robotics inquiry.</p>
+  <p class="hero-body">Robotics work at the lab spans the VEX competition ecosystem and broader robotics inquiry. The lab's active competition work, including the VEX Visualizer scouting dashboard, lives at vex.nullsetlabs.org. This page will expand as additional robotics projects move into public release.</p>
+</header>
+
+<!-- ACTIVE WORK -->
+<section id="active">
+  <div class="section-label">Active Work</div>
+  <h2 class="section-title">Where the robotics work is happening.</h2>
+  <div class="cards-single">
+
+    <a class="project-card" href="https://vex.nullsetlabs.org/">
+      <div class="project-content">
+        <div class="project-card-header">
+          <div class="project-name">VEX at Null Set Labs</div>
+          <span class="pill pill-live">Live</span>
+        </div>
+        <p class="project-subtitle">VEX competition visualizer and ongoing statistical research at vex.nullsetlabs.org.</p>
+        <div class="project-meta">
+          <span class="project-link">vex.nullsetlabs.org</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ARTEMIS WORK -->
+<section id="artemis">
+  <div class="section-label">Artemis</div>
+  <h2 class="section-title">Lunar and space-systems concepts.</h2>
+  <div class="cards-single">
+
+    <a class="project-card" href="https://robotics.nullsetlabs.org/leaf-link/">
+      <div class="project-content">
+        <div class="project-card-header">
+          <div class="project-name">LEAF-Link</div>
+          <span class="pill pill-progress">In Preparation</span>
+        </div>
+        <p class="project-subtitle">A concept for forecasting plant stress in NASA's LEAF lunar plant biology payload, linking habitat sensor telemetry to expected biological stress days before visible symptoms appear.</p>
+        <div class="project-meta">
+          <span class="project-link">robotics.nullsetlabs.org/leaf-link</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- OPEN-SOURCE WORK -->
+<section id="open">
+  <div class="section-label">Open-Source Tooling</div>
+  <h2 class="section-title">Game tooling and analysis.</h2>
+  <div class="cards-single">
+
+    <a class="project-card" href="#open">
+      <div class="project-content">
+        <div class="project-card-header">
+          <div class="project-name">Override</div>
+          <span class="pill pill-progress">In Preparation</span>
+        </div>
+        <p class="project-subtitle">Open-source game tooling and analysis for the 2026 to 2027 VEX game. In preparation.</p>
+        <div class="project-meta">
+          <span class="project-link">robotics.nullsetlabs.org/override</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="https://nullsetlabs.org/" class="footer-brand">
+      <svg class="footer-brand-glyph" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="footerSlashGradient" x1="20%" y1="80%" x2="80%" y2="20%">
+            <stop offset="0%" stop-color="#3b82f6"/>
+            <stop offset="100%" stop-color="#c19a5b"/>
+          </linearGradient>
+        </defs>
+        <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <line x1="5.5" y1="18.5" x2="18.5" y2="5.5" stroke="url(#footerSlashGradient)" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      Null Set Labs
+    </a>
+    <div>&copy; 2026 Null Set Labs &middot; robotics.nullsetlabs.org</div>
+  </div>
+</footer>
+
+<!-- Cloudflare Web Analytics: token TBD, register at https://dash.cloudflare.com/?to=/:account/web-analytics -->
+<!-- <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "TBD-ROBOTICS-TOKEN"}'></script> -->
+<!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>

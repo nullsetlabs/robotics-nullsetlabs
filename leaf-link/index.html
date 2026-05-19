@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>LEAF-Link, Null Set Labs</title>
+
+<!-- Google Analytics (gtag.js) - shared Null Set Labs property -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R1S9F2Z4HS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-R1S9F2Z4HS');
+</script>
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://robotics.nullsetlabs.org/leaf-link/">
+<meta property="og:title" content="LEAF-Link: Predicting plant stress before cameras can see it">
+<meta property="og:description" content="A deeper dive into NASA's LEAF lunar plant biology payload. Forecasting plant stress from environmental telemetry, by Null Set Labs.">
+<meta property="og:image" content="https://robotics.nullsetlabs.org/leaf-link/og-preview.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Null Set Labs">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LEAF-Link, Null Set Labs">
+<meta name="twitter:description" content="A deeper dive into NASA's LEAF lunar plant biology payload.">
+<meta name="twitter:image" content="https://robotics.nullsetlabs.org/leaf-link/og-preview.png">
+
+<!-- General Meta -->
+<meta name="description" content="LEAF-Link is a Null Set Labs concept for forecasting plant stress in NASA's LEAF lunar plant biology payload using environmental telemetry and public spaceflight datasets.">
+<meta name="author" content="Null Set Labs">
+<link rel="canonical" href="https://robotics.nullsetlabs.org/leaf-link/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0a0a0f">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="https://nullsetlabs.org/brand-assets/favicons/favicon.svg">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="https://nullsetlabs.org/brand-assets/favicons/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://nullsetlabs.org/brand-assets/favicons/apple-touch-icon.png">
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #15151d;
+    --surface-2: #1d1d27;
+    --border: #26262f;
+    --border-strong: #353541;
+    --text: #ededeb;
+    --text-dim: #8a8a92;
+    --text-dimmer: #5e5e66;
+    --accent: #c19a5b;
+    --accent-bright: #d4b076;
+    --accent-soft: rgba(193, 154, 91, 0.12);
+    --accent-border: rgba(193, 154, 91, 0.28);
+    --brand-blue: #3b82f6;
+    --brand-blue-soft: rgba(59, 130, 246, 0.12);
+    --live: #4ade80;
+    --progress: #fbbf24;
+    --max-width: 1080px;
+    --max-text: 680px;
+    --card-max: 880px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--accent-soft); color: var(--accent-bright); }
+
+  /* COSMIC BACKDROP */
+  .cosmos {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse at 18% 12%, rgba(59, 130, 246, 0.06) 0%, transparent 45%),
+      radial-gradient(ellipse at 82% 88%, rgba(193, 154, 91, 0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(15, 15, 24, 0) 0%, var(--bg) 75%);
+  }
+  .cosmos svg { width: 100%; height: 100%; }
+  .star { fill: #ededeb; }
+
+  /* TOP NAV */
+  .topnav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    background: rgba(10, 10, 15, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topnav-inner {
+    max-width: var(--max-width); margin: 0 auto;
+    padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Newsreader', serif; font-weight: 500; font-size: 17px;
+    letter-spacing: 0.2px; color: var(--text);
+  }
+  .nav-brand-glyph { width: 22px; height: 22px; color: var(--accent); }
+  .nav-section {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px;
+  }
+  .nav-links { display: flex; align-items: center; gap: 24px; font-size: 14px; color: var(--text-dim); }
+  .nav-links a { transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* DECK CONTAINER */
+  .deck {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    padding-top: 60px;
+  }
+  .deck-track {
+    display: flex;
+    height: 100%;
+    transition: transform 520ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: transform;
+  }
+  .card {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px 80px;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .card-inner {
+    width: 100%;
+    max-width: var(--card-max);
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 600ms ease-out 80ms, transform 600ms ease-out 80ms;
+  }
+  .card.is-active .card-inner {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* COMMON CARD TYPOGRAPHY */
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 500; letter-spacing: 2.4px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 18px;
+  }
+  .card h1, .card h2 {
+    font-family: 'Newsreader', serif; font-weight: 500;
+    color: var(--text); letter-spacing: -0.7px; line-height: 1.04;
+    margin-bottom: 22px;
+  }
+  .card h1 { font-size: clamp(38px, 6.6vw, 72px); }
+  .card h2 { font-size: clamp(30px, 4.8vw, 52px); }
+  .card h2.medium { font-size: clamp(28px, 4.2vw, 46px); }
+  .lede {
+    font-family: 'Newsreader', serif; font-weight: 400;
+    font-size: clamp(17px, 2.1vw, 21px);
+    color: var(--text-dim); line-height: 1.6;
+    max-width: 640px;
+  }
+  .lede.tight { max-width: 560px; }
+  .lede strong { color: var(--text); font-weight: 500; }
+  .lede a, .body-block a {
+    color: var(--accent-bright);
+    border-bottom: 1px solid var(--accent-border);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .lede a:hover, .body-block a:hover {
+    color: var(--text);
+    border-bottom-color: var(--accent-bright);
+  }
+  .body-block {
+    margin-top: 18px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    max-width: 640px;
+  }
+  .body-block p { margin-bottom: 12px; }
+  .body-block strong { color: var(--text); font-weight: 500; }
+  .meta-row {
+    margin-top: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; color: var(--text-dimmer); letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+  .meta-row .dot { margin: 0 10px; color: var(--border-strong); }
+  .discretion {
+    margin-top: 22px; padding: 12px 16px;
+    border-left: 2px solid var(--accent-border);
+    background: var(--accent-soft);
+    font-family: 'Inter', sans-serif;
+    font-size: 13.5px; color: var(--text-dim); line-height: 1.55;
+    max-width: 600px;
+    border-radius: 0 6px 6px 0;
+  }
+
+  /* RESOURCE LINKS */
+  .res-links {
+    margin-top: 22px;
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .res-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.4px;
+    color: var(--text-dim);
+    background: rgba(21, 21, 29, 0.5);
+    transition: all 0.2s;
+  }
+  .res-link:hover {
+    color: var(--accent-bright);
+    border-color: var(--accent-border);
+    background: var(--accent-soft);
+  }
+  .res-link svg { width: 12px; height: 12px; opacity: 0.7; }
+
+  /* CARD 1: TITLE */
+  .card-title .card-inner {
+    display: grid; grid-template-columns: 1fr; gap: 40px;
+    align-items: center;
+  }
+  @media (min-width: 880px) {
+    .card-title .card-inner { grid-template-columns: 1.1fr 0.9fr; gap: 56px; }
+  }
+  .title-mark { display: flex; justify-content: center; }
+  .title-mark svg { width: 100%; max-width: 360px; height: auto; }
+  .title-credit {
+    margin-top: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--text-dim); letter-spacing: 1.2px;
+  }
+  .title-credit .accent { color: var(--accent); }
+
+  /* CARD 2: ISSUE */
+  .timeline-graphic { margin-top: 30px; }
+  .timeline-graphic svg { width: 100%; height: auto; max-width: 720px; }
+  .species-row {
+    margin-top: 24px;
+    display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .species-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 14px;
+    border: 1px solid var(--accent-border);
+    background: var(--accent-soft);
+    color: var(--accent-bright);
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px; letter-spacing: 0.6px;
+  }
+  .species-pill em {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    color: var(--text);
+    font-size: 13px;
+  }
+
+  /* CARD 3: DATA */
+  .data-graphic { margin-top: 28px; }
+  .data-graphic svg { width: 100%; height: auto; max-width: 720px; }
+
+  /* CARD 4: METHOD */
+  .method-grid {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    max-width: 760px;
+  }
+  @media (min-width: 720px) {
+    .method-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  }
+  .method-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .method-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-border), transparent);
+  }
+  .method-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px; font-weight: 600; letter-spacing: 1.8px;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 8px;
+  }
+  .method-title {
+    font-family: 'Newsreader', serif; font-weight: 500;
+    font-size: 18px; color: var(--text); margin-bottom: 8px;
+    letter-spacing: -0.2px;
+  }
+  .method-body {
+    font-family: 'Inter', sans-serif; font-size: 13.5px;
+    color: var(--text-dim); line-height: 1.55;
+  }
+
+  /* CARD 5: SOLUTION */
+  .flow-graphic { margin-top: 28px; }
+  .flow-graphic svg { width: 100%; height: auto; max-width: 760px; }
+
+  /* CARD 6: IMPACT */
+  .impact-grid {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 720px) {
+    .impact-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+  }
+  .impact-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 22px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .impact-panel.lunar { border-top: 2px solid var(--accent-border); }
+  .impact-panel.earth { border-top: 2px solid rgba(74, 222, 128, 0.4); }
+  .impact-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600; letter-spacing: 2px;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 10px;
+  }
+  .impact-panel.earth .impact-label { color: var(--live); }
+  .impact-title {
+    font-family: 'Newsreader', serif; font-weight: 500;
+    font-size: 21px; color: var(--text); margin-bottom: 14px;
+    letter-spacing: -0.2px;
+  }
+  .impact-body {
+    font-family: 'Inter', sans-serif; font-size: 14.5px;
+    color: var(--text-dim); line-height: 1.6;
+  }
+  .impact-svg { margin-bottom: 14px; height: 64px; display: flex; align-items: center; }
+  .impact-svg svg { height: 100%; width: auto; }
+
+  /* CARD 7: COLLABORATORS */
+  .card-close .card-inner { text-align: center; }
+  .close-glyph { display: flex; justify-content: center; margin: 0 auto 32px; }
+  .close-glyph svg { width: 84px; height: 84px; color: var(--accent); }
+  .card-close .lede { margin: 0 auto; }
+  .close-contact {
+    margin-top: 32px;
+    display: inline-flex; flex-wrap: wrap; gap: 12px;
+    justify-content: center;
+  }
+  .contact-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 20px;
+    border: 1px solid var(--accent-border);
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; letter-spacing: 0.4px;
+    color: var(--accent-bright);
+    background: var(--accent-soft);
+    transition: all 0.2s;
+  }
+  .contact-pill:hover {
+    background: var(--accent-border);
+    color: var(--text);
+  }
+
+  /* DECK CONTROLS */
+  .deck-controls {
+    position: fixed;
+    bottom: 20px; left: 0; right: 0;
+    z-index: 40;
+    display: flex; justify-content: center; align-items: center;
+    gap: 14px;
+    pointer-events: none;
+  }
+  .deck-controls > * { pointer-events: auto; }
+  .nav-btn {
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(21, 21, 29, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover, .nav-btn:focus-visible {
+    border-color: var(--accent-border);
+    color: var(--accent);
+    background: rgba(21, 21, 29, 0.95);
+    outline: none;
+  }
+  .nav-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+  .nav-btn svg { width: 18px; height: 18px; }
+
+  .dots {
+    display: flex; gap: 9px;
+    padding: 10px 16px;
+    background: rgba(21, 21, 29, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+  }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--border-strong);
+    border: none; padding: 0; cursor: pointer;
+    transition: all 0.25s;
+  }
+  .dot:hover { background: var(--text-dim); }
+  .dot.is-active {
+    background: var(--accent);
+    width: 24px; border-radius: 999px;
+    box-shadow: 0 0 8px rgba(193, 154, 91, 0.4);
+  }
+
+  .card-counter {
+    position: fixed;
+    top: 70px; right: 24px;
+    z-index: 30;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 2px;
+    color: var(--text-dimmer);
+    background: rgba(21, 21, 29, 0.7);
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+  }
+  .card-counter .current { color: var(--accent); }
+
+  /* FOOTER MINI */
+  .footer-mini {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 1px;
+    color: var(--text-dimmer);
+    text-align: center;
+  }
+  .footer-mini a { color: var(--text-dim); transition: color 0.2s; }
+  .footer-mini a:hover { color: var(--accent); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .deck-track, .card-inner { transition: none !important; }
+    .nav-btn, .dot, .contact-pill { transition: none !important; }
+  }
+
+  @media (max-width: 768px) {
+    .topnav-inner { padding: 12px 18px; gap: 12px; }
+    .nav-links { gap: 14px; font-size: 13px; }
+    .deck { padding-top: 56px; }
+    .card { padding: 24px 20px 110px; align-items: flex-start; padding-top: 32px; }
+    .card-counter { top: 64px; right: 18px; }
+    .card h1 { font-size: clamp(34px, 9vw, 52px); }
+    .card h2 { font-size: clamp(28px, 7vw, 40px); }
+    .lede { font-size: 16px; }
+    .body-block { font-size: 14.5px; }
+    .deck-controls { bottom: 16px; gap: 10px; }
+  }
+  @media (max-width: 480px) {
+    .nav-section { display: none; }
+    .nav-links { display: none; }
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<!-- COSMIC BACKDROP -->
+<div class="cosmos" aria-hidden="true">
+  <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <g opacity="0.55">
+      <circle class="star" cx="60" cy="120" r="0.6" opacity="0.7"/>
+      <circle class="star" cx="148" cy="46" r="0.5" opacity="0.5"/>
+      <circle class="star" cx="220" cy="180" r="0.7" opacity="0.8"/>
+      <circle class="star" cx="312" cy="92" r="0.4" opacity="0.45"/>
+      <circle class="star" cx="402" cy="220" r="0.6" opacity="0.6"/>
+      <circle class="star" cx="488" cy="58" r="0.5" opacity="0.5"/>
+      <circle class="star" cx="560" cy="160" r="0.8" opacity="0.9"/>
+      <circle class="star" cx="640" cy="100" r="0.5" opacity="0.55"/>
+      <circle class="star" cx="722" cy="240" r="0.6" opacity="0.65"/>
+      <circle class="star" cx="808" cy="80" r="0.4" opacity="0.5"/>
+      <circle class="star" cx="892" cy="172" r="0.7" opacity="0.7"/>
+      <circle class="star" cx="970" cy="48" r="0.5" opacity="0.55"/>
+      <circle class="star" cx="1042" cy="200" r="0.6" opacity="0.6"/>
+      <circle class="star" cx="1118" cy="118" r="0.5" opacity="0.5"/>
+      <circle class="star" cx="80" cy="340" r="0.6" opacity="0.65"/>
+      <circle class="star" cx="170" cy="420" r="0.4" opacity="0.45"/>
+      <circle class="star" cx="252" cy="368" r="0.7" opacity="0.75"/>
+      <circle class="star" cx="338" cy="490" r="0.5" opacity="0.5"/>
+      <circle class="star" cx="420" cy="320" r="0.6" opacity="0.6"/>
+      <circle class="star" cx="510" cy="440" r="0.4" opacity="0.45"/>
+      <circle class="star" cx="588" cy="370" r="0.8" opacity="0.85"/>
+      <circle class="star" cx="678" cy="510" r="0.5" opacity="0.55"/>
+      <circle class="star" cx="760" cy="340" r="0.6" opacity="0.65"/>
+      <circle class="star" cx="840" cy="460" r="0.4" opacity="0.5"/>
+      <circle class="star" cx="922" cy="392" r="0.7" opacity="0.7"/>
+      <circle class="star" cx="1004" cy="320" r="0.5" opacity="0.55"/>
+      <circle class="star" cx="1082" cy="438" r="0.6" opacity="0.6"/>
+      <circle class="star" cx="1150" cy="380" r="0.5" opacity="0.5"/>
+      <circle class="star" cx="48" cy="580" r="0.6" opacity="0.6"/>
+      <circle class="star" cx="138" cy="660" r="0.4" opacity="0.45"/>
+      <circle class="star" cx="222" cy="612" r="0.7" opacity="0.75"/>
+      <circle class="star" cx="306" cy="720" r="0.5" opacity="0.5"/>
+      <circle class="star" cx="390" cy="580" r="0.6" opacity="0.6"/>
+      <circle class="star" cx="480" cy="690" r="0.4" opacity="0.45"/>
+      <circle class="star" cx="560" cy="620" r="0.8" opacity="0.8"/>
+      <circle class="star" cx="650" cy="740" r="0.5" opacity="0.55"/>
+      <circle class="star" cx="730" cy="600" r="0.6" opacity="0.65"/>
+      <circle class="star" cx="818" cy="700" r="0.4" opacity="0.5"/>
+      <circle class="star" cx="900" cy="638" r="0.7" opacity="0.7"/>
+      <circle class="star" cx="980" cy="580" r="0.5" opacity="0.55"/>
+      <circle class="star" cx="1060" cy="700" r="0.6" opacity="0.6"/>
+      <circle class="star" cx="1140" cy="620" r="0.5" opacity="0.5"/>
+    </g>
+  </svg>
+</div>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="https://nullsetlabs.org/" class="nav-brand" aria-label="Null Set Labs home">
+      <svg class="nav-brand-glyph" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="navSlashGradient" x1="20%" y1="80%" x2="80%" y2="20%">
+            <stop offset="0%" stop-color="#3b82f6"/>
+            <stop offset="100%" stop-color="#c19a5b"/>
+          </linearGradient>
+        </defs>
+        <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <line x1="5.5" y1="18.5" x2="18.5" y2="5.5" stroke="url(#navSlashGradient)" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      Null Set Labs
+    </a>
+    <span class="nav-section">Artemis</span>
+    <div class="nav-links">
+      <a href="https://robotics.nullsetlabs.org/">Back to Robotics</a>
+      <a href="https://nullsetlabs.org/">All projects</a>
+    </div>
+  </div>
+</nav>
+
+<!-- CARD COUNTER -->
+<div class="card-counter" aria-hidden="true">
+  <span class="current">01</span> / <span class="total">07</span>
+</div>
+
+<!-- DECK -->
+<main class="deck" id="deck" aria-roledescription="carousel" aria-label="LEAF-Link presentation">
+  <div class="deck-track" id="deckTrack">
+
+    <!-- CARD 1: TITLE -->
+    <section class="card card-title is-active" aria-roledescription="slide" aria-label="Slide 1 of 7">
+      <div class="card-inner">
+        <div>
+          <div class="eyebrow">LEAF-Link</div>
+          <h1>Predicting plant stress before cameras can see it.</h1>
+          <p class="lede tight">A deeper dive into NASA's LEAF lunar plant biology payload, by Null Set Labs. Exploring how environmental telemetry can forecast molecular stress days before visible symptoms appear.</p>
+          <div class="title-credit">
+            <span class="accent">NULL SET LABS</span> &middot; ARTEMIS RESEARCH TRACK &middot; 2026
+          </div>
+        </div>
+        <div class="title-mark" aria-hidden="true">
+          <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="titleHeat" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#c19a5b" stop-opacity="0.45"/>
+                <stop offset="40%" stop-color="#c19a5b" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#c19a5b" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="titleSlash" x1="20%" y1="80%" x2="80%" y2="20%">
+                <stop offset="0%" stop-color="#3b82f6"/>
+                <stop offset="50%" stop-color="#7d7a7a"/>
+                <stop offset="100%" stop-color="#c19a5b"/>
+              </linearGradient>
+              <linearGradient id="titleLeafStroke" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.85"/>
+                <stop offset="100%" stop-color="#c19a5b"/>
+              </linearGradient>
+            </defs>
+            <circle cx="160" cy="160" r="140" fill="url(#titleHeat)"/>
+            <g fill="#c19a5b" opacity="0.55">
+              <circle cx="160" cy="40" r="2"/>
+              <circle cx="218" cy="56" r="1.8"/>
+              <circle cx="263" cy="97" r="1.8"/>
+              <circle cx="280" cy="160" r="2"/>
+              <circle cx="263" cy="223" r="1.8"/>
+              <circle cx="218" cy="264" r="1.8"/>
+              <circle cx="160" cy="280" r="2"/>
+              <circle cx="102" cy="264" r="1.8"/>
+              <circle cx="57" cy="223" r="1.8"/>
+              <circle cx="40" cy="160" r="2"/>
+              <circle cx="57" cy="97" r="1.8"/>
+              <circle cx="102" cy="56" r="1.8"/>
+            </g>
+            <circle cx="160" cy="160" r="120" fill="none" stroke="#26262f" stroke-width="1"/>
+            <circle cx="160" cy="160" r="92" fill="none" stroke="#26262f" stroke-width="1" opacity="0.7"/>
+            <g transform="translate(160 160)">
+              <path d="M -50 50 C -50 -20, 0 -60, 50 -50 C 60 0, 20 50, -50 50 Z"
+                    fill="none"
+                    stroke="url(#titleLeafStroke)"
+                    stroke-width="2.4"
+                    stroke-linejoin="round"/>
+              <line x1="-50" y1="50" x2="50" y2="-50" stroke="#c19a5b" stroke-width="1.2" opacity="0.55"/>
+              <line x1="-30" y1="40" x2="-5" y2="25" stroke="#c19a5b" stroke-width="0.8" opacity="0.4"/>
+              <line x1="-10" y1="40" x2="15" y2="20" stroke="#c19a5b" stroke-width="0.8" opacity="0.4"/>
+              <line x1="10" y1="35" x2="30" y2="10" stroke="#c19a5b" stroke-width="0.8" opacity="0.4"/>
+              <line x1="-25" y1="20" x2="-5" y2="5" stroke="#c19a5b" stroke-width="0.8" opacity="0.4"/>
+              <line x1="-5" y1="15" x2="20" y2="-5" stroke="#c19a5b" stroke-width="0.8" opacity="0.4"/>
+            </g>
+            <circle cx="160" cy="160" r="54" fill="none" stroke="#c19a5b" stroke-width="1.6" opacity="0.85"/>
+            <line x1="120" y1="200" x2="200" y2="120" stroke="url(#titleSlash)" stroke-width="2.4" stroke-linecap="round"/>
+            <line x1="160" y1="160" x2="265" y2="105" stroke="#c19a5b" stroke-width="1" opacity="0.35"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARD 2: ISSUE -->
+    <section class="card" aria-roledescription="slide" aria-label="Slide 2 of 7">
+      <div class="card-inner">
+        <div class="eyebrow">The Issue</div>
+        <h2>Visible symptoms arrive days after the damage.</h2>
+        <p class="lede">NASA's LEAF payload (Lunar Effects on Agricultural Flora) is the first experiment to grow plants directly on the lunar surface. It carries three species into partial gravity and lunar radiation. The challenge: by the time a camera captures wilting or yellowing, the molecular stress response has already been running for days. Reactive intervention is too late.</p>
+
+        <div class="species-row" aria-label="LEAF plant species">
+          <span class="species-pill"><em>Arabidopsis thaliana</em> &middot; thale cress</span>
+          <span class="species-pill"><em>Brassica rapa</em> &middot; field mustard</span>
+          <span class="species-pill"><em>Lemna</em> &middot; duckweed</span>
+        </div>
+
+        <div class="body-block">
+          <p>LEAF will observe photosynthesis, growth, and systemic stress responses under conditions that no terrestrial plant has been exposed to before. Partial gravity (roughly one-sixth Earth's), unfiltered cosmic radiation, and thermal cycling all act on plant tissue simultaneously. Each can trigger molecular stress pathways independently. A plant under combined stress is not the simple sum of these pathways.</p>
+          <p>The lab's premise: if the molecular response begins on day zero and visible symptoms surface on day three to five, there is a forecasting window the habitat is not yet using.</p>
+        </div>
+
+        <div class="res-links">
+          <a class="res-link" href="https://science.nasa.gov/biological-physical/space-crops/" target="_blank" rel="noopener">
+            NASA Space Crops / LEAF
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          </a>
+          <a class="res-link" href="https://www.nasa.gov/news-release/nasa-selects-first-lunar-instruments-for-artemis-astronaut-deployment/" target="_blank" rel="noopener">
+            NASA Artemis instruments announcement
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          </a>
+          <a class="res-link" href="https://www.nasa.gov/humans-in-space/artemis/" target="_blank" rel="noopener">
+            NASA Artemis program
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          </a>
+        </div>
+
+        <div class="timeline-graphic" aria-hidden="true">
+          <svg viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="problemFade" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.9"/>
+                <stop offset="50%" stop-color="#7d7a7a" stop-opacity="0.6"/>
+                <stop offset="100%" stop-color="#c19a5b" stop-opacity="0.85"/>
+              </linearGradient>
+            </defs>
+            <text x="0" y="22" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a8a92" letter-spacing="1.4">MOLECULAR SIGNAL (DAY 0)</text>
+            <line x1="0" y1="56" x2="720" y2="56" stroke="#26262f" stroke-width="1"/>
+            <circle cx="60" cy="56" r="5" fill="#3b82f6"/>
+            <circle cx="60" cy="56" r="11" fill="none" stroke="#3b82f6" stroke-width="1" opacity="0.5"/>
+            <text x="0" y="108" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a8a92" letter-spacing="1.4">VISIBLE SYMPTOMS (DAY 3 TO 5)</text>
+            <line x1="0" y1="142" x2="720" y2="142" stroke="#26262f" stroke-width="1"/>
+            <circle cx="300" cy="142" r="5" fill="#fbbf24"/>
+            <text x="0" y="184" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a8a92" letter-spacing="1.4">CAMERA DETECTION + INTERVENTION (DAY 5+)</text>
+            <line x1="0" y1="216" x2="720" y2="216" stroke="#26262f" stroke-width="1"/>
+            <circle cx="460" cy="216" r="5" fill="#c19a5b"/>
+            <path d="M 60 62 Q 180 100, 300 138" fill="none" stroke="#3b82f6" stroke-width="1.2" opacity="0.5" stroke-dasharray="3 4"/>
+            <path d="M 300 148 Q 380 180, 460 212" fill="none" stroke="#c19a5b" stroke-width="1.2" opacity="0.5" stroke-dasharray="3 4"/>
+            <text x="170" y="100" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#5e5e66" letter-spacing="1.2">FORECASTING WINDOW</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARD 3: SOURCE OF DATA -->
+    <section class="card" aria-roledescription="slide" aria-label="Slide 3 of 7">
+      <div class="card-inner">
+        <div class="eyebrow">Source of Data</div>
+        <h2>NASA's open spaceflight biology archive.</h2>
+        <p class="lede">The analysis draws on NASA's Open Science Data Repository (OSDR), the public archive of biological and environmental data from spaceflight experiments. OSDR aggregates omics data from GeneLab and physiological, phenotypic, and environmental data from the Ames Life Sciences Data Archive.</p>
+
+        <div class="body-block">
+          <p>Of particular interest to LEAF-Link: transcriptomic datasets from <em>Arabidopsis thaliana</em> grown aboard the International Space Station, with paired environmental telemetry from past plant habitats (temperature, humidity, light spectrum, atmospheric composition, root-zone moisture). These are the same plant species LEAF carries and similar habitat sensor families, which lets historical molecular response patterns inform future habitat decisions.</p>
+          <p>The archive is openly accessible. Specific dataset selection and study identifiers are held for direct conversations with collaborators.</p>
+        </div>
+
+        <div class="res-links">
+          <a class="res-link" href="https://osdr.nasa.gov/" target="_blank" rel="noopener">
+            osdr.nasa.gov
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          </a>
+          <a class="res-link" href="https://science.nasa.gov/biological-physical/data/osdr/" target="_blank" rel="noopener">
+            About OSDR
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          </a>
+        </div>
+
+        <div class="data-graphic" aria-hidden="true">
+          <svg viewBox="0 0 720 170" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="dataPulse" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.0"/>
+                <stop offset="50%" stop-color="#c19a5b" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.0"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(80 85)">
+              <rect x="-30" y="-18" width="60" height="36" rx="3" fill="none" stroke="#3b82f6" stroke-width="1.4"/>
+              <line x1="-46" y1="0" x2="-30" y2="0" stroke="#3b82f6" stroke-width="1.2"/>
+              <line x1="30" y1="0" x2="46" y2="0" stroke="#3b82f6" stroke-width="1.2"/>
+              <line x1="-46" y1="-10" x2="-46" y2="10" stroke="#3b82f6" stroke-width="1.2"/>
+              <line x1="46" y1="-10" x2="46" y2="10" stroke="#3b82f6" stroke-width="1.2"/>
+              <text x="0" y="42" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a8a92" letter-spacing="1.4">ISS PLANT HABITATS</text>
+            </g>
+            <line x1="160" y1="85" x2="340" y2="85" stroke="url(#dataPulse)" stroke-width="1.4"/>
+            <polygon points="340,85 333,82 333,88" fill="#c19a5b"/>
+            <text x="250" y="76" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#5e5e66" letter-spacing="1.4">TRANSCRIPTOMES + TELEMETRY</text>
+            <g transform="translate(420 85)">
+              <rect x="-50" y="-30" width="100" height="60" rx="6" fill="rgba(193, 154, 91, 0.06)" stroke="#c19a5b" stroke-width="1.4"/>
+              <line x1="-36" y1="-14" x2="36" y2="-14" stroke="#c19a5b" stroke-width="0.9" opacity="0.6"/>
+              <line x1="-36" y1="-2" x2="22" y2="-2" stroke="#c19a5b" stroke-width="0.9" opacity="0.5"/>
+              <line x1="-36" y1="10" x2="30" y2="10" stroke="#c19a5b" stroke-width="0.9" opacity="0.5"/>
+              <line x1="-36" y1="22" x2="14" y2="22" stroke="#c19a5b" stroke-width="0.9" opacity="0.4"/>
+              <text x="0" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#c19a5b" letter-spacing="1.4">NASA OSDR</text>
+            </g>
+            <line x1="478" y1="85" x2="620" y2="85" stroke="url(#dataPulse)" stroke-width="1.4"/>
+            <polygon points="620,85 613,82 613,88" fill="#c19a5b"/>
+            <g transform="translate(670 85)">
+              <circle r="18" fill="none" stroke="#c19a5b" stroke-width="1.4"/>
+              <circle r="4" fill="#c19a5b"/>
+              <text x="0" y="42" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a8a92" letter-spacing="1.4">ANALYSIS</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARD 4: ANALYSIS METHOD -->
+    <section class="card" aria-roledescription="slide" aria-label="Slide 4 of 7">
+      <div class="card-inner">
+        <div class="eyebrow">Analysis Method</div>
+        <h2 class="medium">Four threads, woven together.</h2>
+        <p class="lede">The approach combines statistical reduction of molecular signal, stratification within genetic background, supervised mapping from environmental telemetry to molecular state, and control-system characterization of the habitat itself.</p>
+
+        <div class="method-grid">
+          <div class="method-card">
+            <div class="method-label">Thread 01</div>
+            <div class="method-title">Principal component analysis</div>
+            <div class="method-body">Reduce transcriptomic datasets to their dominant axes of variance. Identify which components track spaceflight conditions versus baseline biological variation.</div>
+          </div>
+          <div class="method-card">
+            <div class="method-label">Thread 02</div>
+            <div class="method-title">Stratification by ecotype</div>
+            <div class="method-body">Plant genetic background dominates top-level variance. Stratifying within a single ecotype isolates the spaceflight signal that would otherwise be masked.</div>
+          </div>
+          <div class="method-card">
+            <div class="method-label">Thread 03</div>
+            <div class="method-title">Telemetry-to-stress mapping</div>
+            <div class="method-body">Machine learning links environmental sensor patterns (temperature, humidity, light, atmosphere) to the molecular stress response observed in the historical record.</div>
+          </div>
+          <div class="method-card">
+            <div class="method-label">Thread 04</div>
+            <div class="method-title">Closed-loop control simulation</div>
+            <div class="method-body">Treat the habitat as a control system. Characterize how sensor cadence and actuator response shape what any forecast can reasonably promise.</div>
+          </div>
+        </div>
+
+        <div class="discretion">
+          The specific approach is held for direct conversations with collaborators. This page is a public concept overview, not a methods document.
+        </div>
+      </div>
+    </section>
+
+    <!-- CARD 5: HOW WE ARE SOLVING IT -->
+    <section class="card" aria-roledescription="slide" aria-label="Slide 5 of 7">
+      <div class="card-inner">
+        <div class="eyebrow">How We Are Solving It</div>
+        <h2>LEAF-Link, a forward-looking stress score.</h2>
+        <p class="lede">LEAF-Link is a software layer that links a habitat's environmental telemetry to expected biological stress in the plants. The output is a probability score habitat operators can act on early, shifting intervention from reactive to preventive.</p>
+
+        <div class="body-block">
+          <p>Where current habitat control responds to what cameras can see, LEAF-Link projects forward from what sensors already report. The score is a single, interpretable number tied to a confidence band and a forecast horizon. When it crosses a threshold, the habitat adjusts before symptoms appear.</p>
+          <p>The tool is designed to sit alongside existing habitat control software, not replace it. It reads telemetry the habitat already produces and emits a recommendation the habitat operator can accept or override.</p>
+        </div>
+
+        <div class="flow-graphic" aria-hidden="true">
+          <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="flowArrow" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#c19a5b" stop-opacity="0.9"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(60 100)">
+              <rect x="-50" y="-36" width="100" height="72" rx="8" fill="none" stroke="#c19a5b" stroke-width="1.4"/>
+              <circle cx="-22" cy="-12" r="3" fill="#c19a5b"/>
+              <circle cx="0" cy="-12" r="3" fill="#c19a5b" opacity="0.7"/>
+              <circle cx="22" cy="-12" r="3" fill="#c19a5b" opacity="0.5"/>
+              <line x1="-30" y1="8" x2="30" y2="8" stroke="#c19a5b" stroke-width="1" opacity="0.5"/>
+              <line x1="-30" y1="20" x2="20" y2="20" stroke="#c19a5b" stroke-width="1" opacity="0.4"/>
+              <text x="0" y="58" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a8a92" letter-spacing="1.4">SENSORS</text>
+            </g>
+            <line x1="118" y1="100" x2="228" y2="100" stroke="url(#flowArrow)" stroke-width="1.5"/>
+            <polygon points="228,100 222,96 222,104" fill="#c19a5b"/>
+            <g transform="translate(290 100)">
+              <rect x="-56" y="-40" width="112" height="80" rx="8" fill="rgba(193, 154, 91, 0.06)" stroke="#c19a5b" stroke-width="1.4"/>
+              <g stroke="#c19a5b" stroke-width="0.8" opacity="0.7">
+                <line x1="-30" y1="-18" x2="0" y2="-6"/>
+                <line x1="-30" y1="-18" x2="0" y2="10"/>
+                <line x1="-30" y1="6" x2="0" y2="-6"/>
+                <line x1="-30" y1="6" x2="0" y2="10"/>
+                <line x1="-30" y1="22" x2="0" y2="10"/>
+                <line x1="0" y1="-6" x2="30" y2="6"/>
+                <line x1="0" y1="10" x2="30" y2="6"/>
+              </g>
+              <circle cx="-30" cy="-18" r="2.6" fill="#c19a5b"/>
+              <circle cx="-30" cy="6" r="2.6" fill="#c19a5b"/>
+              <circle cx="-30" cy="22" r="2.6" fill="#c19a5b"/>
+              <circle cx="0" cy="-6" r="2.6" fill="#c19a5b"/>
+              <circle cx="0" cy="10" r="2.6" fill="#c19a5b"/>
+              <circle cx="30" cy="6" r="2.6" fill="#c19a5b"/>
+              <text x="0" y="58" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a8a92" letter-spacing="1.4">LEAF-LINK MODEL</text>
+            </g>
+            <line x1="350" y1="100" x2="460" y2="100" stroke="url(#flowArrow)" stroke-width="1.5"/>
+            <polygon points="460,100 454,96 454,104" fill="#c19a5b"/>
+            <g transform="translate(528 100)">
+              <rect x="-58" y="-40" width="116" height="80" rx="8" fill="none" stroke="#c19a5b" stroke-width="1.4"/>
+              <path d="M -34 14 A 34 34 0 0 1 34 14" fill="none" stroke="#26262f" stroke-width="6"/>
+              <path d="M -34 14 A 34 34 0 0 1 16 -22" fill="none" stroke="#c19a5b" stroke-width="6" stroke-linecap="round"/>
+              <text x="0" y="6" text-anchor="middle" font-family="Newsreader, serif" font-size="18" fill="#ededeb" font-weight="500">0.74</text>
+              <text x="0" y="58" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a8a92" letter-spacing="1.4">STRESS SCORE</text>
+            </g>
+            <line x1="588" y1="100" x2="690" y2="100" stroke="url(#flowArrow)" stroke-width="1.5"/>
+            <polygon points="690,100 684,96 684,104" fill="#c19a5b"/>
+            <g transform="translate(720 100)">
+              <text x="0" y="-30" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#c19a5b" letter-spacing="1.4">ACT</text>
+              <circle r="14" fill="none" stroke="#c19a5b" stroke-width="1.4"/>
+              <circle r="4" fill="#c19a5b"/>
+              <text x="0" y="40" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8a8a92" letter-spacing="1.4">HABITAT</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARD 6: WHAT THIS MEANS -->
+    <section class="card" aria-roledescription="slide" aria-label="Slide 6 of 7">
+      <div class="card-inner">
+        <div class="eyebrow">What This Means</div>
+        <h2 class="medium">For the scientific community.</h2>
+        <p class="lede">Preventive habitat control with a stress forecast has two distinct audiences. One is lunar agriculture and future plant biology payloads. The other is closed-environment agriculture on Earth.</p>
+
+        <div class="impact-grid">
+          <div class="impact-panel lunar">
+            <div class="impact-svg" aria-hidden="true">
+              <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="40" cy="30" r="20" fill="#15151d" stroke="#c19a5b" stroke-width="1.4"/>
+                <circle cx="34" cy="24" r="2" fill="#26262f"/>
+                <circle cx="46" cy="32" r="3" fill="#26262f"/>
+                <circle cx="40" cy="40" r="1.6" fill="#26262f"/>
+                <line x1="64" y1="30" x2="92" y2="30" stroke="#c19a5b" stroke-width="1.2" stroke-dasharray="2 3"/>
+                <g transform="translate(102 30)">
+                  <path d="M -6 6 C -6 -2, 0 -7, 6 -6 C 7 0, 2 6, -6 6 Z" fill="none" stroke="#c19a5b" stroke-width="1.4"/>
+                </g>
+              </svg>
+            </div>
+            <div class="impact-label">Lunar agriculture</div>
+            <div class="impact-title">Preventive intervention in space plant habitats.</div>
+            <div class="impact-body">A working stress forecast extends what LEAF-class payloads can do. Future plant biology on the Moon will run longer, deeper, and farther from Earth response loops. Habitats that act on a forecast rather than a symptom reduce crew time spent on plant recovery and improve the data plants return.</div>
+          </div>
+          <div class="impact-panel earth">
+            <div class="impact-svg" aria-hidden="true">
+              <svg viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+                <rect x="14" y="16" width="36" height="28" rx="2" fill="none" stroke="#4ade80" stroke-width="1.4"/>
+                <line x1="14" y1="24" x2="50" y2="24" stroke="#4ade80" stroke-width="0.9" opacity="0.7"/>
+                <line x1="14" y1="34" x2="50" y2="34" stroke="#4ade80" stroke-width="0.9" opacity="0.7"/>
+                <line x1="22" y1="16" x2="22" y2="44" stroke="#4ade80" stroke-width="0.9" opacity="0.7"/>
+                <line x1="32" y1="16" x2="32" y2="44" stroke="#4ade80" stroke-width="0.9" opacity="0.7"/>
+                <line x1="42" y1="16" x2="42" y2="44" stroke="#4ade80" stroke-width="0.9" opacity="0.7"/>
+                <line x1="60" y1="30" x2="78" y2="30" stroke="#4ade80" stroke-width="1.2" stroke-dasharray="2 3"/>
+                <g transform="translate(96 30)">
+                  <circle r="12" fill="none" stroke="#4ade80" stroke-width="1.4"/>
+                  <path d="M -5 0 L -1 4 L 6 -4" fill="none" stroke="#4ade80" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+              </svg>
+            </div>
+            <div class="impact-label">Earth applications</div>
+            <div class="impact-title">Vertical farms, greenhouses, controlled-environment crops.</div>
+            <div class="impact-body">Closed-loop habitat control with stress prediction maps directly onto vertical farming, commercial greenhouses, and crop research facilities. The same telemetry-to-stress mapping that helps a lunar habitat manage radiation and partial gravity also helps a vertical farm catch nutrient or light stress before yield is lost.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARD 7: COLLABORATORS -->
+    <section class="card card-close" aria-roledescription="slide" aria-label="Slide 7 of 7">
+      <div class="card-inner">
+        <div class="close-glyph" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="closeSlash" x1="20%" y1="80%" x2="80%" y2="20%">
+                <stop offset="0%" stop-color="#3b82f6"/>
+                <stop offset="50%" stop-color="#7d7a7a"/>
+                <stop offset="100%" stop-color="#c19a5b"/>
+              </linearGradient>
+            </defs>
+            <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <line x1="5.5" y1="18.5" x2="18.5" y2="5.5" stroke="url(#closeSlash)" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="eyebrow" style="text-align: center;">Collaborators welcome</div>
+        <h2 style="text-align: center;">Collaborators on these topics, please contact.</h2>
+        <p class="lede" style="text-align: center;">Plant biology, controlled-environment agriculture, spaceflight habitats, machine learning on biological data. Null Set Labs is glad to hear from researchers working on any of these.</p>
+
+        <div class="close-contact">
+          <a class="contact-pill" href="mailto:research@nullsetlabs.org">research@nullsetlabs.org</a>
+        </div>
+
+        <div class="footer-mini">
+          <a href="https://nullsetlabs.org/">nullsetlabs.org</a>
+          &nbsp;&middot;&nbsp;
+          <a href="https://robotics.nullsetlabs.org/">robotics.nullsetlabs.org</a>
+          &nbsp;&middot;&nbsp;
+          &copy; 2026 Null Set Labs
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- DECK CONTROLS -->
+<div class="deck-controls" aria-hidden="false">
+  <button class="nav-btn" id="prevBtn" aria-label="Previous slide" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+  </button>
+  <div class="dots" id="dots" role="tablist" aria-label="Slide navigation"></div>
+  <button class="nav-btn" id="nextBtn" aria-label="Next slide" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </button>
+</div>
+
+<!-- Cloudflare Web Analytics - replace TBD-ROBOTICS-TOKEN with the token issued for robotics.nullsetlabs.org once the Cloudflare Web Analytics property is registered -->
+<!-- <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "TBD-ROBOTICS-TOKEN"}'></script> -->
+<!-- End Cloudflare Web Analytics -->
+
+<script>
+  (function () {
+    var track = document.getElementById('deckTrack');
+    var cards = Array.prototype.slice.call(track.querySelectorAll('.card'));
+    var prevBtn = document.getElementById('prevBtn');
+    var nextBtn = document.getElementById('nextBtn');
+    var dotsWrap = document.getElementById('dots');
+    var counter = document.querySelector('.card-counter');
+    var counterCurrent = counter.querySelector('.current');
+    var counterTotal = counter.querySelector('.total');
+
+    var index = 0;
+    var total = cards.length;
+    counterTotal.textContent = String(total).padStart(2, '0');
+
+    var dotEls = [];
+    for (var i = 0; i < total; i++) {
+      var b = document.createElement('button');
+      b.className = 'dot' + (i === 0 ? ' is-active' : '');
+      b.type = 'button';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      b.setAttribute('data-index', String(i));
+      dotsWrap.appendChild(b);
+      dotEls.push(b);
+    }
+
+    function update() {
+      track.style.transform = 'translateX(' + (-index * 100) + '%)';
+      cards.forEach(function (c, i) {
+        c.classList.toggle('is-active', i === index);
+      });
+      dotEls.forEach(function (d, i) {
+        d.classList.toggle('is-active', i === index);
+      });
+      counterCurrent.textContent = String(index + 1).padStart(2, '0');
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === total - 1;
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'leaf_link_slide_view', { slide_index: index + 1, slide_total: total });
+      }
+    }
+
+    function go(i) {
+      if (i < 0) i = 0;
+      if (i > total - 1) i = total - 1;
+      if (i === index) return;
+      index = i;
+      update();
+    }
+
+    prevBtn.addEventListener('click', function () { go(index - 1); });
+    nextBtn.addEventListener('click', function () { go(index + 1); });
+
+    dotsWrap.addEventListener('click', function (e) {
+      var t = e.target.closest('.dot');
+      if (!t) return;
+      var i = parseInt(t.getAttribute('data-index'), 10);
+      if (!isNaN(i)) go(i);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); go(index + 1); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(index - 1); }
+      else if (e.key === 'Home') { e.preventDefault(); go(0); }
+      else if (e.key === 'End') { e.preventDefault(); go(total - 1); }
+    });
+
+    var touchStartX = 0;
+    var touchStartY = 0;
+    var touchEndX = 0;
+    var touchEndY = 0;
+    var swipeThreshold = 50;
+
+    track.addEventListener('touchstart', function (e) {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    track.addEventListener('touchend', function (e) {
+      touchEndX = e.changedTouches[0].screenX;
+      touchEndY = e.changedTouches[0].screenY;
+      var dx = touchEndX - touchStartX;
+      var dy = touchEndY - touchStartY;
+      if (Math.abs(dx) > swipeThreshold && Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) go(index + 1);
+        else go(index - 1);
+      }
+    }, { passive: true });
+
+    var wheelLock = false;
+    document.addEventListener('wheel', function (e) {
+      if (wheelLock) return;
+      var active = cards[index];
+      var atTop = active.scrollTop <= 0;
+      var atBottom = active.scrollTop + active.clientHeight >= active.scrollHeight - 2;
+      if (e.deltaY > 30 && atBottom) {
+        wheelLock = true;
+        go(index + 1);
+        setTimeout(function () { wheelLock = false; }, 650);
+      } else if (e.deltaY < -30 && atTop) {
+        wheelLock = true;
+        go(index - 1);
+        setTimeout(function () { wheelLock = false; }, 650);
+      }
+    }, { passive: true });
+
+    update();
+  })();
+</script>
+
+</body>
+</html>
