@@ -212,19 +212,22 @@
 
   /* Currently active strip */
   .active-strip {
-    display: flex; flex-wrap: wrap; gap: 14px;
+    display: flex; flex-wrap: wrap; gap: 14px 22px;
     max-width: var(--max-width); margin: 0 auto 8px;
     padding: 14px 18px;
     border: 1px solid var(--border); border-radius: 10px;
     background: rgba(193, 154, 91, 0.04);
+    align-items: center;
   }
   .active-strip-wrap { max-width: var(--max-width); margin: 0 auto; padding: 8px 24px 0; }
   .active-item {
     display: flex; align-items: center; gap: 10px;
-    flex: 1; min-width: 220px;
+    flex: 1 1 240px; min-width: 0;
     font-size: 13px; color: var(--text-dim);
     font-family: 'Inter', sans-serif;
+    line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
+  .active-item > span:last-child { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
   .active-dot {
     width: 8px; height: 8px; border-radius: 50%;
     background: var(--live); box-shadow: 0 0 8px var(--live);
@@ -322,8 +325,8 @@
     .project-subtitle { font-size: 15px; }
     .project-meta { font-size: 12px; min-height: 44px; align-items: center; }
     .active-strip-wrap { padding: 4px 18px 0; }
-    .active-strip { padding: 12px 14px; }
-    .active-item { font-size: 12px; }
+    .active-strip { padding: 12px 14px; flex-direction: column; align-items: flex-start; gap: 8px; }
+    .active-item { font-size: 12px; flex: 0 0 auto; white-space: normal; overflow: visible; text-overflow: clip; width: 100%; }
     .how-block { padding: 20px 20px; }
     .how-list li { font-size: 16px; }
     .why-card-heading { font-size: 19px; }
@@ -394,11 +397,11 @@
   <div class="active-strip" aria-label="Currently active">
     <div class="active-item">
       <span class="active-dot" aria-hidden="true"></span>
-      <span><strong>VEX Visualizer</strong> &middot; 866 teams indexed for Worlds 2026</span>
+      <span><strong>VEX Visualizer</strong> &middot; 866 teams at Worlds 2026</span>
     </div>
     <div class="active-item">
       <span class="active-dot" aria-hidden="true"></span>
-      <span><strong>Override Preview</strong> &middot; live inside the visualizer</span>
+      <span><strong>Override Preview</strong> &middot; live in the visualizer</span>
     </div>
     <div class="active-item active-item-soft">
       <span class="active-dot" aria-hidden="true"></span>
