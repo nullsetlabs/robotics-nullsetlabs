@@ -210,6 +210,80 @@
   .pill-progress { background: var(--progress-bg); color: var(--progress); }
   .pill-progress::before { background: var(--progress); }
 
+  /* Currently active strip */
+  .active-strip {
+    display: flex; flex-wrap: wrap; gap: 14px;
+    max-width: var(--max-width); margin: 0 auto 8px;
+    padding: 14px 18px;
+    border: 1px solid var(--border); border-radius: 10px;
+    background: rgba(193, 154, 91, 0.04);
+  }
+  .active-strip-wrap { max-width: var(--max-width); margin: 0 auto; padding: 8px 24px 0; }
+  .active-item {
+    display: flex; align-items: center; gap: 10px;
+    flex: 1; min-width: 220px;
+    font-size: 13px; color: var(--text-dim);
+    font-family: 'Inter', sans-serif;
+  }
+  .active-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--live); box-shadow: 0 0 8px var(--live);
+    flex-shrink: 0;
+  }
+  .active-item strong { color: var(--text); font-weight: 600; }
+  .active-item-soft .active-dot {
+    background: var(--progress); box-shadow: 0 0 8px var(--progress);
+  }
+
+  /* How the work runs (sub-bullet block) */
+  .how-block {
+    margin: 24px 0 0;
+    padding: 24px 26px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: rgba(193, 154, 91, 0.04);
+  }
+  .how-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  .how-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .how-list li {
+    position: relative; padding-left: 24px;
+    font-family: 'Newsreader', serif; font-size: 17px;
+    line-height: 1.55; color: var(--text);
+  }
+  .how-list li::before {
+    content: ''; position: absolute; left: 4px; top: 0.72em;
+    width: 12px; height: 1px; background: var(--accent);
+  }
+  .how-list strong { font-weight: 600; color: var(--accent-bright); }
+
+  /* Why this research section */
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .why-card {
+    padding: 26px 24px;
+    border: 1px solid var(--border); border-radius: 12px;
+    background: var(--surface);
+    display: flex; flex-direction: column; gap: 12px;
+    transition: border-color 0.2s;
+  }
+  .why-card:hover { border-color: var(--accent-border); }
+  .why-icon { width: 32px; height: 32px; color: var(--accent); }
+  .why-card-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .why-card-heading {
+    font-family: 'Newsreader', serif;
+    font-size: 21px; font-weight: 500; letter-spacing: -0.2px;
+    color: var(--text); line-height: 1.25;
+  }
+  .why-card-body { font-size: 15px; line-height: 1.6; color: var(--text-dim); }
+  .why-card-body strong { color: var(--accent-bright); font-weight: 600; }
+
   /* FOOTER */
   footer { border-top: 1px solid var(--border); padding: 48px 24px 36px; }
   .footer-inner {
@@ -226,6 +300,10 @@
   .footer-brand:hover { color: var(--accent); }
   .footer-brand-glyph { width: 18px; height: 18px; color: var(--accent); }
 
+  @media (max-width: 900px) {
+    .why-grid { grid-template-columns: 1fr; gap: 16px; }
+    .why-card { padding: 22px 20px; }
+  }
   @media (max-width: 768px) {
     .topnav-inner { padding: 12px 16px; gap: 10px; flex-wrap: wrap; }
     .nav-brand { font-size: 16px; }
@@ -243,6 +321,12 @@
     .project-name { font-size: 20px; }
     .project-subtitle { font-size: 15px; }
     .project-meta { font-size: 12px; min-height: 44px; align-items: center; }
+    .active-strip-wrap { padding: 4px 18px 0; }
+    .active-strip { padding: 12px 14px; }
+    .active-item { font-size: 12px; }
+    .how-block { padding: 20px 20px; }
+    .how-list li { font-size: 16px; }
+    .why-card-heading { font-size: 19px; }
     footer { padding: 40px 18px 32px; }
     .footer-inner { font-size: 12px; text-align: center; justify-content: center; }
   }
@@ -286,6 +370,7 @@
       <a href="#active">Active</a>
       <a href="#artemis">Artemis</a>
       <a href="#open">Open</a>
+      <a href="#why">Why</a>
       <a href="https://nullsetlabs.org/">Back to nullsetlabs.org</a>
     </div>
   </div>
@@ -301,14 +386,41 @@
   <div class="hero-eyebrow">Research at Null Set Labs</div>
   <h1>Robotics</h1>
   <p class="hero-tagline">Competition tooling, statistical research, and broader robotics inquiry.</p>
-  <p class="hero-body">Robotics work at the lab spans the VEX competition ecosystem and broader robotics inquiry. The lab's active competition work, including the VEX Visualizer scouting dashboard, lives at vex.nullsetlabs.org. This page will expand as additional robotics projects move into public release.</p>
+  <p class="hero-body">Open tools and research for the VEX competition ecosystem, plus space-systems concepts at the edge of robotics and biology.</p>
 </header>
+
+<!-- CURRENTLY ACTIVE STRIP -->
+<div class="active-strip-wrap">
+  <div class="active-strip" aria-label="Currently active">
+    <div class="active-item">
+      <span class="active-dot" aria-hidden="true"></span>
+      <span><strong>VEX Visualizer</strong> &middot; 866 teams indexed for Worlds 2026</span>
+    </div>
+    <div class="active-item">
+      <span class="active-dot" aria-hidden="true"></span>
+      <span><strong>Override Preview</strong> &middot; live inside the visualizer</span>
+    </div>
+    <div class="active-item active-item-soft">
+      <span class="active-dot" aria-hidden="true"></span>
+      <span><strong>LEAF-Link</strong> &middot; concept in preparation</span>
+    </div>
+  </div>
+</div>
 
 <!-- ACTIVE WORK -->
 <section id="active">
   <div class="section-label">Active Work</div>
   <h2 class="section-title">Where the robotics work is happening.</h2>
-  <div class="cards-single">
+  <div class="how-block" aria-label="How this page is organized">
+    <div class="how-label">How this page is organized</div>
+    <ul class="how-list">
+      <li><strong>Active competition work.</strong> The VEX Visualizer scouting dashboard and ongoing statistical research, hosted at vex.nullsetlabs.org.</li>
+      <li><strong>Artemis track.</strong> Space-systems concepts that sit at the edge of robotics and biology, starting with LEAF-Link.</li>
+      <li><strong>Open-source tooling.</strong> Game-specific tools released alongside each VEX season, currently the Override preview.</li>
+      <li><strong>Growth on evidence.</strong> The page expands as additional robotics projects move into public release.</li>
+    </ul>
+  </div>
+  <div class="cards-single" style="margin-top: 28px;">
 
     <a class="project-card" href="https://vex.nullsetlabs.org/">
       <div class="project-content">
@@ -354,18 +466,60 @@
   <h2 class="section-title">Game tooling and analysis.</h2>
   <div class="cards-single">
 
-    <a class="project-card" href="#open">
+    <a class="project-card" href="https://vex.nullsetlabs.org/visualizer/#override">
       <div class="project-content">
         <div class="project-card-header">
           <div class="project-name">Override</div>
-          <span class="pill pill-progress">In Preparation</span>
+          <span class="pill pill-live">Preview Live</span>
         </div>
-        <p class="project-subtitle">Open-source game tooling and analysis for the 2026 to 2027 VEX game. In preparation.</p>
+        <p class="project-subtitle">Open-source game tooling for VRC Override, the 2026 to 2027 VEX season. The current preview surfaces the published game-manual highlights inside the VEX Visualizer; deeper tooling lands when the season opens.</p>
         <div class="project-meta">
-          <span class="project-link">robotics.nullsetlabs.org/override</span>
+          <span class="project-link">vex.nullsetlabs.org/visualizer/#override</span>
         </div>
       </div>
     </a>
+
+  </div>
+</section>
+
+<!-- WHY THIS RESEARCH -->
+<section id="why">
+  <div class="section-label">Why this research</div>
+  <h2 class="section-title">Open methods, in a corner of robotics where they're rare.</h2>
+  <div class="why-grid">
+
+    <div class="why-card">
+      <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M3 12h18"/>
+        <path d="M12 3a14 14 0 0 1 4 9 14 14 0 0 1-4 9 14 14 0 0 1-4-9 14 14 0 0 1 4-9z"/>
+      </svg>
+      <div class="why-card-title">Why open tools</div>
+      <div class="why-card-heading">Methodology, not just a leaderboard.</div>
+      <p class="why-card-body">Existing competition robotics analytics are largely proprietary or shallow. The lab publishes the <strong>methodology behind every number</strong>, so other teams, coaches, and researchers can audit the work and build on it instead of trusting a black box.</p>
+    </div>
+
+    <div class="why-card">
+      <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      <div class="why-card-title">Who it's for</div>
+      <div class="why-card-heading">Teams, coaches, and curious readers.</div>
+      <p class="why-card-body">Drivers, programmers, and analysts reading the data behind their season. Coaches reviewing trends across events. Researchers reviewing methodology. Students learning to <strong>reason from real competition inputs</strong> rather than tutorials.</p>
+    </div>
+
+    <div class="why-card">
+      <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      <div class="why-card-title">What's open vs. held</div>
+      <div class="why-card-heading">Tools out, pre-prints private.</div>
+      <p class="why-card-body">Tools and methodology are released openly under the Null Set Labs banner. <strong>Pre-publication research</strong> developed with faculty collaborators stays private until peer review. The site shows the surface; the deeper work surfaces when it's ready.</p>
+    </div>
 
   </div>
 </section>
