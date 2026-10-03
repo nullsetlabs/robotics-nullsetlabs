@@ -209,6 +209,8 @@
   .pill-live::before { background: var(--live); box-shadow: 0 0 8px var(--live); }
   .pill-progress { background: var(--progress-bg); color: var(--progress); }
   .pill-progress::before { background: var(--progress); }
+  .pill-done { background: var(--accent-soft); color: var(--accent-bright); }
+  .pill-done::before { background: var(--accent-bright); }
 
   /* Currently active strip */
   .active-strip {
@@ -237,6 +239,7 @@
   .active-item-soft .active-dot {
     background: var(--progress); box-shadow: 0 0 8px var(--progress);
   }
+  .active-item-done .active-dot { background: var(--accent-bright); box-shadow: none; }
 
   /* How the work runs (sub-bullet block) */
   .how-block {
@@ -403,9 +406,9 @@
       <span class="active-dot" aria-hidden="true"></span>
       <span><strong>Override game guide</strong> &middot; in the visualizer</span>
     </div>
-    <div class="active-item active-item-soft">
+    <div class="active-item active-item-done">
       <span class="active-dot" aria-hidden="true"></span>
-      <span><strong>LEAF-Link</strong> &middot; concept in preparation</span>
+      <span><a href="https://robotics.nullsetlabs.org/leaf-link/"><strong>LEAF-Link</strong></a> &middot; concept study completed</span>
     </div>
   </div>
 </div>
@@ -418,7 +421,7 @@
     <div class="how-label">How this page is organized</div>
     <ul class="how-list">
       <li><strong>Competition data.</strong> The VEX Visualizer season tracker, hosted at vex.nullsetlabs.org.</li>
-      <li><strong>Artemis track.</strong> Space-systems concepts at the boundary of robotics and plant biology, starting with LEAF-Link.</li>
+      <li><strong>Artemis track.</strong> Space-systems concepts at the boundary of robotics and plant biology; LEAF-Link, a concept study completed in 2026.</li>
       <li><strong>Open-source tooling.</strong> Game-specific tools for each VEX season; for 2026-2027, the Override game guide.</li>
       <li><strong>Scope.</strong> Projects are listed here once they reach public release.</li>
     </ul>
@@ -451,9 +454,9 @@
       <div class="project-content">
         <div class="project-card-header">
           <div class="project-name">LEAF-Link</div>
-          <span class="pill pill-progress">In Preparation</span>
+          <span class="pill pill-done">Completed</span>
         </div>
-        <p class="project-subtitle">A concept for forecasting plant stress in NASA's LEAF lunar plant biology payload, linking habitat sensor telemetry to expected biological stress days before visible symptoms appear.</p>
+        <p class="project-subtitle">A concept study on forecasting plant stress for NASA's LEAF lunar plant payload, tested on NASA spaceflight gene-expression data (OSD-37) and a growth-chamber control simulation. Results, figures and code are published.</p>
         <div class="project-meta">
           <span class="project-link">robotics.nullsetlabs.org/leaf-link</span>
         </div>
@@ -508,8 +511,8 @@
         <polygon points="16.2 7.8 13.4 13.4 7.8 16.2 10.6 10.6 16.2 7.8"/>
       </svg>
       <div class="why-card-title">Artemis track</div>
-      <div class="why-card-heading">A concept in preparation.</div>
-      <p class="why-card-body">LEAF-Link is a concept for forecasting plant stress in NASA's LEAF lunar plant-biology payload from habitat sensor telemetry. It is at an earlier stage than the competition work and is being developed toward faculty collaboration.</p>
+      <div class="why-card-heading">A completed concept study.</div>
+      <p class="why-card-body">LEAF-Link tested whether spaceflight gene expression can label plant stress for a sensor-based forecast on NASA's LEAF payload. In NASA study OSD-37, plant strain explained more of the expression data than spaceflight, yet flight and ground samples were told apart for 55 of 56 samples held out in turn. Independent research by Arjun, completed in October 2026.</p>
     </div>
 
   </div>

@@ -1,0 +1,827 @@
+{
+ "study": "OSD-37",
+ "n_genes": 28052,
+ "n_samples": 56,
+ "condition_counts": {
+  "Space Flight": 28,
+  "Ground Control": 28
+ },
+ "ecotype_counts": {
+  "Ws-2": 16,
+  "Col-0": 16,
+  "Ler-0": 12,
+  "Cvi-0": 12
+ },
+ "variance_explained_pct": [
+  16.44,
+  14.44,
+  10.0,
+  7.46,
+  5.28,
+  4.78
+ ],
+ "eta2": {
+  "PC1": {
+   "ecotype": 0.806,
+   "spaceflight": 0.006,
+   "round_R1_R2": 0.016
+  },
+  "PC2": {
+   "ecotype": 0.937,
+   "spaceflight": 0.005,
+   "round_R1_R2": 0.0
+  },
+  "PC3": {
+   "ecotype": 0.086,
+   "spaceflight": 0.271,
+   "round_R1_R2": 0.311
+  },
+  "PC4": {
+   "ecotype": 0.122,
+   "spaceflight": 0.007,
+   "round_R1_R2": 0.044
+  },
+  "PC5": {
+   "ecotype": 0.534,
+   "spaceflight": 0.002,
+   "round_R1_R2": 0.035
+  },
+  "PC6": {
+   "ecotype": 0.062,
+   "spaceflight": 0.4,
+   "round_R1_R2": 0.191
+  }
+ },
+ "points": [
+  {
+   "sample": "Atha_Ws-2_sl-pool_FLT_Rep1_R1-FL-C1",
+   "pc1": -14.58,
+   "pc2": 19.73,
+   "condition": "Space Flight",
+   "ecotype": "Ws-2"
+  },
+  {
+   "sample": "Atha_Ler-0_sl-pool_FLT_Rep1_R1-FL-C2",
+   "pc1": 31.18,
+   "pc2": 8.86,
+   "condition": "Space Flight",
+   "ecotype": "Ler-0"
+  },
+  {
+   "sample": "Atha_Cvi-0_sl-pool_FLT_Rep1_R1-FL-C3",
+   "pc1": 33.09,
+   "pc2": 4.95,
+   "condition": "Space Flight",
+   "ecotype": "Cvi-0"
+  },
+  {
+   "sample": "Atha_Ws-2_sl-pool_FLT_Rep2_R1-FL-C4",
+   "pc1": -27.69,
+   "pc2": 17.24,
+   "condition": "Space Flight",
+   "ecotype": "Ws-2"
+  },
+  {
+   "sample": "Atha_Ler-0_sl-pool_FLT_Rep2_R1-FL-C5",
+   "pc1": 26.06,
+   "pc2": 4.83,
+   "condition": "Space Flight",
+   "ecotype": "Ler-0"
+  },
+  {
+   "sample": "Atha_Ws-2_sl-pool_FLT_Rep3_R1-FL-D1",
+   "pc1": -27.85,
+   "pc2": 20.01,
+   "condition": "Space Flight",
+   "ecotype": "Ws-2"
+  },
+  {
+   "sample": "Atha_Cvi-0_sl-pool_FLT_Rep2_R1-FL-D2",
+   "pc1": 32.51,
+   "pc2": 11.7,
+   "condition": "Space Flight",
+   "ecotype": "Cvi-0"
+  },
+  {
+   "sample": "Atha_Ler-0_sl-pool_FLT_Rep3_R1-FL-D3",
+   "pc1": 29.16,
+   "pc2": 0.44,
+   "condition": "Space Flight",
+   "ecotype": "Ler-0"
+  },
+  {
+   "sample": "Atha_Ws-2_sl-pool_FLT_Rep4_R1-FL-D4",
+   "pc1": -18.78,
+   "pc2": 26.59,
+   "condition": "Space Flight",
+   "ecotype": "Ws-2"
+  },
+  {
+   "sample": "Atha_Cvi-0_sl-pool_FLT_Rep3_R1-FL-D5",
+   "pc1": 33.66,
+   "pc2": 6.71,
+   "condition": "Space Flight",
+   "ecotype": "Cvi-0"
+  },
+  {
+   "sample": "Atha_Ws-2_sl-pool_GC_Rep1_R1-GC-C1",
+   "pc1": -12.25,
+   "pc2": 22.35,
+   "condition": "Ground Control",
+   "ecotype": "Ws-2"
+  },
+  {
+   "sample": "Atha_Ler-0_sl-pool_GC_Rep1_R1-GC-C2",
+   "pc1": 26.05,
+   "pc2": 9.34,
+   "condition": "Ground Control",
+   "ecotype": "Ler-0"
+  },
+  {
+   "sample": "Atha_Cvi-0_sl-pool_GC_Rep1_R1-GC-C3",
+   "pc1": 28.88,
+   "pc2": 6.23,
+   "condition": "Ground Control",
+   "ecotype": "Cvi-0"
+  },
+  {
+   "sample": "Atha_Ws-2_sl-pool_GC_Rep2_R1-GC-C4",
+   "pc1": -15.91,
+   "pc2": 34.03,
+   "condition": "Ground Control",
+   "ecotype": "Ws-2"
+  },
+  {
+   "sample": "Atha_Ler-0_sl-pool_GC_Rep2_R1-GC-C5",
+   "pc1": 26.59,
+   "pc2": 15.18,
+   "condition": "Ground Control",
+   "ecotype": "Ler-0"
+  },
+  {
+   "sample": "Atha_Ws-2_sl-pool_GC_Rep3_R1-GC-D1",
+   "pc1": -16.11,
+   "pc2": 35.65,
+   "condition": "Ground Control",
+   "ecotype": "Ws-2"
+  },
+  {
+   "sample": "Atha_Cvi-0_sl-pool_GC_Rep2_R1-GC-D2",
+   "pc1": 31.01,
+   "pc2": 8.79,
+   "condition": "Ground Control",
+   "ecotype": "Cvi-0"
+  },
+  {
+   "sample": "Atha_Ler-0_sl-pool_GC_Rep3_R1-GC-D3",
+   "pc1": 29.71,
+   "pc2": 19.7,
+   "condition": "Ground Control",
+   "ecotype": "Ler-0"
+  },
+  {
+   "sample": "Atha_Ws-2_sl-pool_GC_Rep4_R1-GC-D4",
+   "pc1": -16.91,
+   "pc2": 24.31,
+   "condition": "Ground Control",
+   "ecotype": "Ws-2"
+  },
+  {
+   "sample": "Atha_Cvi-0_sl-pool_GC_Rep3_R1-GC-D5",
+   "pc1": 28.63,
+   "pc2": 6.59,
+   "condition": "Ground Control",
+   "ecotype": "Cvi-0"
+  },
+  {
+   "sample": "Atha_Ws-2_sl-pool_FLT_Rep5_R2-FL-C1",
+   "pc1": -17.25,
+   "pc2": 19.69,
+   "condition": "Space Flight",
+   "ecotype": "Ws-2"
+  },
+  {
+   "sample": "Atha_Ler-0_sl-pool_FLT_Rep4_R2-FL-C2",
+   "pc1": 25.69,
+   "pc2": 6.48,
+   "condition": "Space Flight",
+   "ecotype": "Ler-0"
+  },
+  {
+   "sample": "Atha_Cvi-0_sl-pool_FLT_Rep4_R2-FL-C3",
+   "pc1": 33.01,
+   "pc2": 3.63,
+   "condition": "Space Flight",
+   "ecotype": "Cvi-0"
+  },
+  {
+   "sample": "Atha_Ws-2_sl-pool_FLT_Rep6_R2-FL-C4",
+   "pc1": -75.0,
+   "pc2": 35.69,
+   "condition": "Space Flight",
+   "ecotype": "Ws-2"
+  },
+  {
+   "sample": "Atha_Ler-0_sl-pool_FLT_Rep5_R2-FL-C5",
+   "pc1": 24.73,
+   "pc2": 2.45,
+   "condition": "Space Flight",
+   "ecotype": "Ler-0"
+  },
+  {
+   "sample": "Atha_Ws-2_sl-pool_FLT_Rep7_R2-FL-D1",
+   "pc1": -38.87,
+   "pc2": 21.18,
+   "condition": "Space Flight",
+   "ecotype": "Ws-2"
+  },
+  {
+   "sample": "Atha_Cvi-0_sl-pool_FLT_Rep5_R2-FL-D2",
+   "pc1": 33.43,
+   "pc2": 7.57,
+   "condition": "Space Flight",
+   "ecotype": "Cvi-0"
+  },
+  {
+   "sample": "Atha_Ler-0_sl-pool_FLT_Rep6_R2-FL-D3",
+   "pc1": 27.66,
+   "pc2": -6.1,
+   "condition": "Space Flight",
+   "ecotype": "Ler-0"
+  },
+  {
+   "sample": "Atha_Ws-2_sl-pool_FLT_Rep8_R2-FL-D4",
+   "pc1": -90.59,
+   "pc2": 57.02,
+   "condition": "Space Flight",
+   "ecotype": "Ws-2"
+  },
+  {
+   "sample": "Atha_Cvi-0_sl-pool_FLT_Rep6_R2-FL-D5",
+   "pc1": 31.5,
+   "pc2": -0.55,
+   "condition": "Space Flight",
+   "ecotype": "Cvi-0"
+  },
+  {
+   "sample": "Atha_Ws-2_sl-pool_GC_Rep5_R2-GC-C1",
+   "pc1": -17.43,
+   "pc2": 25.79,
+   "condition": "Ground Control",
+   "ecotype": "Ws-2"
+  },
+  {
+   "sample": "Atha_Ler-0_sl-pool_GC_Rep4_R2-GC-C2",
+   "pc1": 29.73,
+   "pc2": 2.39,
+   "condition": "Ground Control",
+   "ecotype": "Ler-0"
+  },
+  {
+   "sample": "Atha_Cvi-0_sl-pool_GC_Rep4_R2-GC-C3",
+   "pc1": 27.41,
+   "pc2": 5.77,
+   "condition": "Ground Control",
+   "ecotype": "Cvi-0"
+  },
+  {
+   "sample": "Atha_Ws-2_sl-pool_GC_Rep6_R2-GC-C4",
+   "pc1": -24.94,
+   "pc2": 34.13,
+   "condition": "Ground Control",
+   "ecotype": "Ws-2"
+  },
+  {
+   "sample": "Atha_Ler-0_sl-pool_GC_Rep5_R2-GC-C5",
+   "pc1": 29.28,
+   "pc2": 12.4,
+   "condition": "Ground Control",
+   "ecotype": "Ler-0"
+  },
+  {
+   "sample": "Atha_Ws-2_sl-pool_GC_Rep7_R2-GC-D1",
+   "pc1": -19.51,
+   "pc2": 37.4,
+   "condition": "Ground Control",
+   "ecotype": "Ws-2"
+  },
+  {
+   "sample": "Atha_Cvi-0_sl-pool_GC_Rep5_R2-GC-D2",
+   "pc1": 31.16,
+   "pc2": 6.8,
+   "condition": "Ground Control",
+   "ecotype": "Cvi-0"
+  },
+  {
+   "sample": "Atha_Ler-0_sl-pool_GC_Rep6_R2-GC-D3",
+   "pc1": 28.42,
+   "pc2": 15.82,
+   "condition": "Ground Control",
+   "ecotype": "Ler-0"
+  },
+  {
+   "sample": "Atha_Ws-2_sl-pool_GC_Rep8_R2-GC-D4",
+   "pc1": -14.04,
+   "pc2": 19.53,
+   "condition": "Ground Control",
+   "ecotype": "Ws-2"
+  },
+  {
+   "sample": "Atha_Cvi-0_sl-pool_GC_Rep6_R2-GC-D5",
+   "pc1": 23.01,
+   "pc2": 9.36,
+   "condition": "Ground Control",
+   "ecotype": "Cvi-0"
+  },
+  {
+   "sample": "Atha_Col-0_sl-pool_FLT_Rep1_R1-FL-A1",
+   "pc1": -18.51,
+   "pc2": -41.63,
+   "condition": "Space Flight",
+   "ecotype": "Col-0"
+  },
+  {
+   "sample": "Atha_Col-0_sl-pool_FLT_Rep2_R1-FL-A4",
+   "pc1": -14.61,
+   "pc2": -37.12,
+   "condition": "Space Flight",
+   "ecotype": "Col-0"
+  },
+  {
+   "sample": "Atha_Col-0_sl-pool_FLT_Rep3_R1-FL-B1",
+   "pc1": -11.77,
+   "pc2": -37.77,
+   "condition": "Space Flight",
+   "ecotype": "Col-0"
+  },
+  {
+   "sample": "Atha_Col-0_sl-pool_FLT_Rep4_R1-FL-B4",
+   "pc1": -12.3,
+   "pc2": -40.41,
+   "condition": "Space Flight",
+   "ecotype": "Col-0"
+  },
+  {
+   "sample": "Atha_Col-0_sl-pool_GC_Rep1_R1-GC-A1",
+   "pc1": -13.19,
+   "pc2": -26.25,
+   "condition": "Ground Control",
+   "ecotype": "Col-0"
+  },
+  {
+   "sample": "Atha_Col-0_sl-pool_GC_Rep2_R1-GC-A4",
+   "pc1": -10.45,
+   "pc2": -36.8,
+   "condition": "Ground Control",
+   "ecotype": "Col-0"
+  },
+  {
+   "sample": "Atha_Col-0_sl-pool_GC_Rep3_R1-GC-B1",
+   "pc1": -10.89,
+   "pc2": -36.17,
+   "condition": "Ground Control",
+   "ecotype": "Col-0"
+  },
+  {
+   "sample": "Atha_Col-0_sl-pool_GC_Rep4_R1-GC-B4",
+   "pc1": -13.9,
+   "pc2": -38.78,
+   "condition": "Ground Control",
+   "ecotype": "Col-0"
+  },
+  {
+   "sample": "Atha_Col-0_sl-pool_FLT_Rep5_R2-FL-A1",
+   "pc1": -21.58,
+   "pc2": -44.33,
+   "condition": "Space Flight",
+   "ecotype": "Col-0"
+  },
+  {
+   "sample": "Atha_Col-0_sl-pool_FLT_Rep6_R2-FL-A4",
+   "pc1": -13.69,
+   "pc2": -39.57,
+   "condition": "Space Flight",
+   "ecotype": "Col-0"
+  },
+  {
+   "sample": "Atha_Col-0_sl-pool_FLT_Rep7_R2-FL-B1",
+   "pc1": -17.27,
+   "pc2": -40.34,
+   "condition": "Space Flight",
+   "ecotype": "Col-0"
+  },
+  {
+   "sample": "Atha_Col-0_sl-pool_FLT_Rep8_R2-FL-B4",
+   "pc1": -4.56,
+   "pc2": -41.04,
+   "condition": "Space Flight",
+   "ecotype": "Col-0"
+  },
+  {
+   "sample": "Atha_Col-0_sl-pool_GC_Rep5_R2-GC-A1",
+   "pc1": -44.03,
+   "pc2": -41.4,
+   "condition": "Ground Control",
+   "ecotype": "Col-0"
+  },
+  {
+   "sample": "Atha_Col-0_sl-pool_GC_Rep6_R2-GC-A4",
+   "pc1": -12.7,
+   "pc2": -38.56,
+   "condition": "Ground Control",
+   "ecotype": "Col-0"
+  },
+  {
+   "sample": "Atha_Col-0_sl-pool_GC_Rep7_R2-GC-B1",
+   "pc1": -13.53,
+   "pc2": -38.39,
+   "condition": "Ground Control",
+   "ecotype": "Col-0"
+  },
+  {
+   "sample": "Atha_Col-0_sl-pool_GC_Rep8_R2-GC-B4",
+   "pc1": -20.87,
+   "pc2": -41.11,
+   "condition": "Ground Control",
+   "ecotype": "Col-0"
+  }
+ ],
+ "within_ecotype": {
+  "Col-0": {
+   "n": 16,
+   "variance_explained_pct": [
+    30.0,
+    15.2,
+    8.7
+   ],
+   "eta2_spaceflight": [
+    0.156,
+    0.162,
+    0.22
+   ],
+   "points": [
+    {
+     "pc1": 11.97,
+     "pc2": -7.93,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 8.86,
+     "pc2": -10.05,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 11.71,
+     "pc2": -9.72,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 20.09,
+     "pc2": 2.15,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 3.1,
+     "pc2": -37.88,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": 7.21,
+     "pc2": -14.85,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": 4.76,
+     "pc2": -20.36,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": 7.65,
+     "pc2": -16.17,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": 6.54,
+     "pc2": -3.07,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 7.72,
+     "pc2": -9.22,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 24.69,
+     "pc2": 84.37,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 30.87,
+     "pc2": 42.11,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": -146.24,
+     "pc2": 18.16,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": 3.26,
+     "pc2": 3.58,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": 4.73,
+     "pc2": -8.17,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": -6.91,
+     "pc2": -12.95,
+     "condition": "Ground Control"
+    }
+   ]
+  },
+  "Cvi-0": {
+   "n": 12,
+   "variance_explained_pct": [
+    27.2,
+    17.0,
+    11.6
+   ],
+   "eta2_spaceflight": [
+    0.901,
+    0.017,
+    0.04
+   ],
+   "points": [
+    {
+     "pc1": 39.0,
+     "pc2": -0.92,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 21.09,
+     "pc2": 20.49,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 22.87,
+     "pc2": 10.25,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": -29.74,
+     "pc2": 30.63,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": -25.63,
+     "pc2": 36.38,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": -34.5,
+     "pc2": 26.65,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": 47.07,
+     "pc2": -13.75,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 34.81,
+     "pc2": -6.47,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 45.24,
+     "pc2": -32.7,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": -32.92,
+     "pc2": 5.54,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": -24.43,
+     "pc2": -3.04,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": -62.84,
+     "pc2": -73.07,
+     "condition": "Ground Control"
+    }
+   ]
+  },
+  "Ler-0": {
+   "n": 12,
+   "variance_explained_pct": [
+    21.7,
+    19.1,
+    11.8
+   ],
+   "eta2_spaceflight": [
+    0.372,
+    0.226,
+    0.023
+   ],
+   "points": [
+    {
+     "pc1": -13.6,
+     "pc2": 11.87,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 12.21,
+     "pc2": 18.64,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 13.67,
+     "pc2": 29.9,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": -24.45,
+     "pc2": 19.8,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": -51.88,
+     "pc2": -1.1,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": -52.23,
+     "pc2": 2.23,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": 31.93,
+     "pc2": -11.12,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 32.98,
+     "pc2": 9.99,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 43.38,
+     "pc2": 28.84,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 29.39,
+     "pc2": -5.35,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": -37.1,
+     "pc2": -11.88,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": 15.69,
+     "pc2": -91.81,
+     "condition": "Ground Control"
+    }
+   ]
+  },
+  "Ws-2": {
+   "n": 16,
+   "variance_explained_pct": [
+    39.9,
+    22.5,
+    8.6
+   ],
+   "eta2_spaceflight": [
+    0.144,
+    0.169,
+    0.271
+   ],
+   "points": [
+    {
+     "pc1": 14.68,
+     "pc2": 4.73,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 9.19,
+     "pc2": -6.34,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 7.97,
+     "pc2": 0.24,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 13.59,
+     "pc2": 6.95,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 18.38,
+     "pc2": 10.15,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": 16.64,
+     "pc2": 24.45,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": 17.38,
+     "pc2": 24.14,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": 15.51,
+     "pc2": 15.78,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": 14.4,
+     "pc2": -10.51,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": -31.4,
+     "pc2": -118.79,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 3.14,
+     "pc2": -19.38,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": -166.99,
+     "pc2": 32.77,
+     "condition": "Space Flight"
+    },
+    {
+     "pc1": 17.41,
+     "pc2": -2.33,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": 16.05,
+     "pc2": 2.76,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": 15.73,
+     "pc2": 24.11,
+     "condition": "Ground Control"
+    },
+    {
+     "pc1": 18.32,
+     "pc2": 11.27,
+     "condition": "Ground Control"
+    }
+   ]
+  }
+ },
+ "classification": {
+  "model": "L2 logistic regression (C=0.1) on the 5,000 most variable genes, gene filter and scaling fitted inside each training fold",
+  "cv": "leave one canister position out (28 folds, 2 samples each)",
+  "accuracy": 0.9821,
+  "correct": 55,
+  "misclassified": [
+   "Atha_Ler-0_sl-pool_GC_Rep4_R2-GC-C2"
+  ],
+  "per_ecotype_accuracy": {
+   "Col-0": 1.0,
+   "Cvi-0": 1.0,
+   "Ler-0": 0.917,
+   "Ws-2": 1.0
+  }
+ },
+ "permutation": {
+  "n": 200,
+  "null_mean": 0.343,
+  "null_95th": 0.555,
+  "null_max": 0.768,
+  "p": 0.005
+ },
+ "technical": {
+  "read_depth_mean": {
+   "Ground Control": 43034384.54,
+   "Space Flight": 38666379.89
+  },
+  "rrna_pct_mean": {
+   "Ground Control": 1.04,
+   "Space Flight": 1.08
+  },
+  "read_length_counts": {
+   "101": 55,
+   "151": 1
+  }
+ }
+}
