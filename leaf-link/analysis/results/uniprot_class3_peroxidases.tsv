@@ -1,0 +1,90 @@
+Entry	Gene Names (primary)	Gene Names (ordered locus)	Protein names	Protein families
+O22850	GPX3	At2g43350	Probable glutathione peroxidase 3, mitochondrial (EC 1.11.1.9)	Glutathione peroxidase family
+Q42593	APXT	At1g77490	L-ascorbate peroxidase T, chloroplastic (EC 1.11.1.11) (Thylakoid-bound ascorbate peroxidase) (AtAPx06) (tAPX)	Peroxidase family, Ascorbate peroxidase subfamily
+Q39034	PER59	At5g19890	Peroxidase 59 (Atperox P59) (EC 1.11.1.7) (ATPN) (Peroxidase N)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+P24102	PER22	At2g38380	Peroxidase 22 (Atperox P22) (EC 1.11.1.7) (ATPEa) (Basic peroxidase E)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q42564	APX3	At4g35000	L-ascorbate peroxidase 3 (AtAPx03) (EC 1.11.1.11)	Peroxidase family, Ascorbate peroxidase subfamily
+P24101	PER33	At3g49110	Peroxidase 33 (Atperox P33) (EC 1.11.1.7) (ATPCa) (Neutral peroxidase C) (PERC)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q7XZP5	APX5	At4g35970	L-ascorbate peroxidase 5, peroxisomal (AtAPx04) (EC 1.11.1.11)	Peroxidase family, Ascorbate peroxidase subfamily
+P82281	TL29	At4g09010	Thylakoid lumenal 29 kDa protein, chloroplastic (TL29) (EC 1.-.-.-) (AtAPx07) (P29) (Probable L-ascorbate peroxidase 4)	Peroxidase family
+O23474	PER40	At4g16270	Peroxidase 40 (Atperox P40) (EC 1.11.1.7)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+O80822	PER25	At2g41480	Peroxidase 25 (Atperox P25) (EC 1.11.1.7)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9SD46	PER36	At3g50990	Peroxidase 36 (Atperox P36) (EC 1.11.1.7)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q05431	APX1	At1g07890	L-ascorbate peroxidase 1, cytosolic (AP) (AtAPx01) (EC 1.11.1.11)	Peroxidase family, Ascorbate peroxidase subfamily
+Q67Z07	PER2	At1g05250	Peroxidase 2 (EC 1.11.1.7) (ATP12a) (Atperox P2)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9SMU8	PER34	At3g49120	Peroxidase 34 (Atperox P34) (EC 1.11.1.7) (ATPCb)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q96511	PER69	At5g64100	Peroxidase 69 (Atperox P69) (EC 1.11.1.7) (ATP3a)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9SLH7	PER20	At2g35380	Peroxidase 20 (Atperox P20) (EC 1.11.1.7) (ATP28a)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+P0DI10	PER1	At1g05240	Peroxidase 1 (EC 1.11.1.7) (ATP11a) (Atperox P1)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9FKA4	PER62	At5g39580	Peroxidase 62 (Atperox P62) (EC 1.11.1.7) (ATP24a)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q42578	PER53	At5g06720	Peroxidase 53 (Atperox P53) (EC 1.11.1.7) (ATPA2)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9FLC0	PER52	At5g05340	Peroxidase 52 (Atperox P52) (EC 1.11.1.7) (ATP49)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9SJZ2	PER17	At2g22420	Peroxidase 17 (Atperox P17) (EC 1.11.1.7) (ATP25a)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q43729	PER57	At5g17820	Peroxidase 57 (Atperox P57) (EC 1.11.1.7) (ATP13a) (PRXR10)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q96520	PER12	At1g71695	Peroxidase 12 (Atperox P12) (EC 1.11.1.7) (ATP4a) (PRXR6)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9LSY7	PER30	At3g21770	Peroxidase 30 (Atperox P30) (EC 1.11.1.7) (ATP7a) (PRXR9)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q43387	PER71	At5g64120	Peroxidase 71 (Atperox P71) (EC 1.11.1.7) (ATP15a) (ATPO2)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q43731	PER50	At4g37520	Peroxidase 50 (Atperox P50) (EC 1.11.1.7) (ATP9a) (PRXR2)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9FJZ9	PER72	At5g66390	Peroxidase 72 (Atperox P72) (EC 1.11.1.7) (ATP6a) (PRXR8)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9LHB9	PER32	At3g32980	Peroxidase 32 (Atperox P32) (EC 1.11.1.7) (ATP16a) (PRXR3)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q42580	PER21	At2g37130	Peroxidase 21 (Atperox P21) (EC 1.11.1.7) (ATP2a/ATP2b) (PRXR5)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9SB81	PER42	At4g21960	Peroxidase 42 (Atperox P42) (EC 1.11.1.7) (ATP1a/ATP1b) (PRXR1)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+O23044	PER3	At1g05260	Peroxidase 3 (Atperox P3) (EC 1.11.1.7) (ATPRC) (RCI3A) (Rare cold-inducible protein)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+O04922	GPX2	At2g31570	Probable glutathione peroxidase 2 (EC 1.11.1.9)	Glutathione peroxidase family
+Q9LYB4	GPX5	At3g63080	Probable glutathione peroxidase 5 (EC 1.11.1.9)	Glutathione peroxidase family
+Q1PER6	APX2	At3g09640	L-ascorbate peroxidase 2, cytosolic (EC 1.11.1.11) (L-ascorbate peroxidase 1b) (APX1b) (AtAPx02)	Peroxidase family, Ascorbate peroxidase subfamily
+Q42592	APXS	At4g08390	L-ascorbate peroxidase S, chloroplastic/mitochondrial (EC 1.11.1.11) (Stromal ascorbate peroxidase) (AtAPx05) (sAPX)	Peroxidase family, Ascorbate peroxidase subfamily
+P52032	GPX1	At2g25080	Phospholipid hydroperoxide glutathione peroxidase 1, chloroplastic (PHGPx) (EC 1.11.1.12)	Glutathione peroxidase family
+O48646	GPX6	At4g11600	Probable phospholipid hydroperoxide glutathione peroxidase 6, mitochondrial (AtGPX1) (PHGPx) (EC 1.11.1.12)	Glutathione peroxidase family
+Q8GY91	APX6	At4g32320	Putative L-ascorbate peroxidase 6 (AtAPx08) (EC 1.11.1.11)	Peroxidase family, Ascorbate peroxidase subfamily
+O23609	PER41	At4g17690	Peroxidase 41 (Atperox P41) (EC 1.11.1.7)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9LDA4	PER38	At4g08780	Peroxidase 38 (Atperox P38) (EC 1.11.1.7)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9SZH2	PER43	At4g25980	Peroxidase 43 (Atperox P43) (EC 1.11.1.7)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+O48677	PER6	At1g24110	Peroxidase 6 (Atperox P6) (EC 1.11.1.7)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9LNL0	PER8	At1g34510	Peroxidase 8 (Atperox P8) (EC 1.11.1.7)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+O49293	PER13	At1g77100	Peroxidase 13 (Atperox P13) (EC 1.11.1.7)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9M9Q9	PER5	At1g14550	Peroxidase 5 (Atperox P5) (EC 1.11.1.7)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9LVL1	PER68	At5g58400	Peroxidase 68 (Atperox P68) (EC 1.11.1.7)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9SI17	PER14	At2g18140	Peroxidase 14 (Atperox P14) (EC 1.11.1.7)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9SK52	PER18	At2g24800	Peroxidase 18 (Atperox P18) (EC 1.11.1.7)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+O23237	PER49	At4g36430	Peroxidase 49 (Atperox P49) (EC 1.11.1.7) (ATP31)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q96518	PER16	At2g18980	Peroxidase 16 (Atperox P16) (EC 1.11.1.7) (ATP22a)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9FL16	PER63	At5g40150	Peroxidase 63 (Atperox P63) (EC 1.11.1.7) (ATP26a)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9FMI7	PER70	At5g64110	Peroxidase 70 (Atperox P70) (EC 1.11.1.7) (ATP45)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9LDN9	PER37	At4g08770	Peroxidase 37 (Atperox P37) (EC 1.11.1.7) (ATP38)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9LE15	PER4	At1g14540	Peroxidase 4 (Atperox P4) (EC 1.11.1.7) (ATP46)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9LVL2	PER67	At5g58390	Peroxidase 67 (Atperox P67) (EC 1.11.1.7) (ATP44)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9SS67	PER28	At3g03670	Peroxidase 28 (Atperox P28) (EC 1.11.1.7) (ATP39)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9SZE7	PER51	At4g37530	Peroxidase 51 (Atperox P51) (EC 1.11.1.7) (ATP37)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9ZV04	PER24	At2g39040	Peroxidase 24 (Atperox P24) (EC 1.11.1.7) (ATP47)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+O22959	PER19	At2g34060	Peroxidase 19 (Atperox P19) (EC 1.11.1.7) (ATP51)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+P59120	PER58	At5g19880	Peroxidase 58 (Atperox P58) (EC 1.11.1.7) (ATP42)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q96522	PER45	At4g30170	Peroxidase 45 (Atperox P45) (EC 1.11.1.7) (ATP8a)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9FJR1	PER65	At5g47000	Peroxidase 65 (Atperox P65) (EC 1.11.1.7) (ATP43)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9LHA7	PER31	At3g28200	Peroxidase 31 (Atperox P31) (EC 1.11.1.7) (ATP41)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9LT91	PER66	At5g51890	Peroxidase 66 (Atperox P66) (EC 1.11.1.7) (ATP27a)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9SUT2	PER39	At4g11290	Peroxidase 39 (Atperox P39) (EC 1.11.1.7) (ATP19a)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+O81755	PER48	At4g33870	Putative Peroxidase 48 (Atperox P48) (EC 1.11.1.7)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q96510	PER35	At3g49960	Peroxidase 35 (Atperox P35) (EC 1.11.1.7) (ATP21a)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9LXG3	PER56	At5g15180	Peroxidase 56 (Atperox P56) (EC 1.11.1.7) (ATP33)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9SI16	PER15	At2g18150	Peroxidase 15 (Atperox P15) (EC 1.11.1.7) (ATP36)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+O81772	PER46	At4g31760	Peroxidase 46 (Atperox P46) (EC 1.11.1.7) (ATP48)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q93V93	PER44	At4g26010	Peroxidase 44 (Atperox P44) (EC 1.11.1.7) (ATP35)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q96509	PER55	At5g14130	Peroxidase 55 (Atperox P55) (EC 1.11.1.7) (ATP20a)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q96512	PER9	At1g44970	Peroxidase 9 (Atperox P9) (EC 1.11.1.7) (ATP18a)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9FMR0	PER60	At5g22410	Peroxidase 60 (Atperox P60) (EC 1.11.1.7) (ATP14a)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9FX85	PER10	At1g49570	Peroxidase 10 (Atperox P10) (EC 1.11.1.7) (ATP5a)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9LSP0	PER29	At3g17070	Peroxidase 29 (Atperox P29) (EC 1.11.1.7) (ATP40)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9SY33	PER7	At1g30870	Peroxidase 7 (Atperox P7) (EC 1.11.1.7) (ATP30)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9SZB9	PER47	At4g33420	Peroxidase 47 (Atperox P47) (EC 1.11.1.7) (ATP32)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+O80912	PER23	At2g38390	Peroxidase 23 (Atperox P23) (EC 1.11.1.7) (ATP34)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9FG34	PER54	At5g06730	Peroxidase 54 (Atperox P54) (EC 1.11.1.7) (ATP29a)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q9FLV5	PER61	At5g24070	Probable peroxidase 61 (Atperox P61) (EC 1.11.1.7)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+O22862	PER26	At2g43480	Probable peroxidase 26 (Atperox P26) (EC 1.11.1.7) (ATP50)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q43872	PER64	At5g42180	Peroxidase 64 (Atperox P64) (EC 1.11.1.7) (ATP17a) (PRXR4)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q96519	PER11	At1g68850	Peroxidase 11 (Atperox P11) (EC 1.11.1.7) (ATP23a/ATP23b)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q43873	PER73	At5g67400	Peroxidase 73 (Atperox P73) (EC 1.11.1.7) (ATP10a) (PRXR11)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q43735	PER27	At3g01190	Peroxidase 27 (Atperox P27) (EC 1.11.1.7) (ATP12a) (PRXR7)	Peroxidase family, Classical plant (class III) peroxidase subfamily
+Q8L910	GPX4	At2g48150	Probable glutathione peroxidase 4 (EC 1.11.1.9)	Glutathione peroxidase family
+Q8LBU2	GPX8	At1g63460	Probable glutathione peroxidase 8 (EC 1.11.1.9)	Glutathione peroxidase family
+Q9SZ54	GPX7	At4g31870	Putative glutathione peroxidase 7, chloroplastic (EC 1.11.1.9)	Glutathione peroxidase family

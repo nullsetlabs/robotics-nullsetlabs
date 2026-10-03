@@ -10,11 +10,11 @@ Completed, October 2026. The study is closed and will not be extended by the lab
 
 A single static `index.html` in the lab's project-page layout (nav, breadcrumb, hero, sections, versions row, footer):
 
-1. Summary: question, data, three findings, conclusion
+1. Summary: question, data, four findings, conclusion
 2. Background: the LEAF payload (cited) and the LEAF-Link design
 3. Data: NASA OSDR study OSD-37
-4. Methods: four analyses
-5. Results: four figures and three stat tiles
+4. Methods: five analyses
+5. Results: five figures, one table and three stat tiles
 6. Conclusions
 7. Limitations
 8. Status and materials, references, versions
@@ -44,5 +44,6 @@ No mission dates are stated on the page, because Artemis schedules change.
 
 | Version | Date | Notes |
 |---|---|---|
+| 1.1 | October 3, 2026 | Robustness checks: transfer across strains, gene-filter and regularization sensitivity, 1,000 permutations, heat-shock and peroxidase check against the original study, sensor dead-time sweep. Five results sections and conclusions revised. |
 | 1.0 | October 2026 | Concept study completed: four analyses, figures, code and results published. Replaces the May 2026 slide-style concept overview. Corrects the LEAF duckweed genus to Wolffia. |
 | 0.1 | May 2026 | Concept overview page (seven swipeable cards). |

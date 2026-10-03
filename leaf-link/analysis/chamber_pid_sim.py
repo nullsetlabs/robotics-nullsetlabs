@@ -2,13 +2,15 @@
 LEAF-Link control simulation: one temperature channel of a plant growth chamber under PID control.
 
 Independent research by Arjun, Null Set Labs, April 2026. Model and gains are unchanged from the
-original script; October 2026 changes are limited to writing the results to JSON.
+original script. October 2026 additions: results written to JSON, and a sensitivity run in which the
+controller reads the temperature through a sensor dead time (0 to 120 s).
 
 Scenario: the setpoint steps from a night value of 20 C to a day value of 25 C at t = 30 min,
 as plant habitats do on a day/night schedule. Three gain sets are compared.
 
 Chamber model: first-order, dT/dt = ((T0 + K_HEAT * u) - T) / TAU, with the heater command u
-limited to +/- 80 W and integrator anti-windup at the limit. There is no sensor lag or dead time.
+limited to +/- 80 W and integrator anti-windup at the limit. The original runs have no sensor lag;
+the sensitivity run delays the measurement the controller sees by a fixed dead time.
 
 The "stress score" is an illustrative placeholder, not a biological model:
   score = 1 - exp(-(0.35 * overshoot_C + 0.08 * minutes_above_26C + 0.022 * settling_minutes))
@@ -27,6 +29,8 @@ HEATER_MAX = 80.0  # W
 DT = 1.0           # s
 T_END = 150 * 60   # s
 STEP_AT = 1800     # s
+DELAYS = [0.0, 15.0, 30.0, 60.0, 120.0]  # s, sensor dead time for the sensitivity run
+TRACE_DELAY = 60.0                      # s, delay whose temperature traces are saved
 TUNINGS = [(3.0, 0.005, 2.0, "Under-tuned"),
            (80.0, 1.00, 2.0, "Aggressive"),
            (25.0, 0.08, 20.0, "Balanced")]
@@ -50,15 +54,17 @@ class PID:
         return u_sat
 
 
-def run(kp, ki, kd, label):
+def run(kp, ki, kd, label, delay_s=0.0):
     t = np.arange(0, T_END, DT)
     T = np.zeros_like(t)
     u = np.zeros_like(t)
     T[0] = T_START
     sp = np.where(t < STEP_AT, 20.0, 25.0)
     pid = PID(kp, ki, kd)
+    lag = int(round(delay_s / DT))
     for i in range(1, len(t)):
-        u[i] = pid.step(sp[i], T[i - 1], DT)
+        measured = T[max(0, i - 1 - lag)]
+        u[i] = pid.step(sp[i], measured, DT)
         T[i] = T[i - 1] + ((T_START + K_HEAT * u[i]) - T[i - 1]) / TAU * DT
     after = T[STEP_AT:]
     peak = float(after.max())
@@ -69,7 +75,7 @@ def run(kp, ki, kd, label):
     reach = np.where(after >= 24.5)[0]
     score = float(np.clip(1.0 - np.exp(-(0.35 * overshoot + 0.08 * above26 + 0.022 * settle)), 0.0, 1.0))
     every = slice(None, None, 30)
-    return {"label": label, "kp": kp, "ki": ki, "kd": kd,
+    return {"label": label, "kp": kp, "ki": ki, "kd": kd, "sensor_delay_s": delay_s,
             "peak_C": round(peak, 3), "overshoot_C": round(overshoot, 3), "minutes_above_26C": round(above26, 2),
             "minutes_to_24_5C": round(float(reach[0]) * DT / 60.0, 2) if len(reach) else None,
             "settling_minutes": round(float(settle), 2), "final_C": round(float(T[-1]), 3),
@@ -81,8 +87,17 @@ def run(kp, ki, kd, label):
 
 def main():
     runs = [run(*x) for x in TUNINGS]
+    sweep = []
+    for delay in DELAYS:
+        for x in TUNINGS:
+            r = run(*x, delay_s=delay)
+            keep = {k: r[k] for k in ("label", "sensor_delay_s", "peak_C", "overshoot_C", "minutes_above_26C",
+                                      "settling_minutes", "stress_score")}
+            if delay == TRACE_DELAY:
+                keep.update({"t_min": r["t_min"], "T": r["T"]})
+            sweep.append(keep)
     out = {"model": {"tau_s": TAU, "t_start_C": T_START, "k_heat_C_per_W": K_HEAT, "heater_limit_W": HEATER_MAX,
-                     "setpoint": "20 C until 30 min, then 25 C"}, "runs": runs}
+                     "setpoint": "20 C until 30 min, then 25 C"}, "runs": runs, "sensor_delay_sweep": sweep}
     dest = Path(__file__).parent / "results" / "pid_results.json"
     dest.parent.mkdir(exist_ok=True)
     dest.write_text(json.dumps(out))
@@ -92,5 +107,16 @@ def main():
                                                       r["settling_minutes"], r["minutes_above_26C"], r["stress_score"]))
 
 
+def print_sweep(path):
+    data = json.loads(Path(path).read_text())
+    print()
+    print("Sensor dead time sweep")
+    print("%-12s %8s %10s %9s %9s %7s" % ("Tuning", "Delay s", "Overshoot", "Settle", "Above 26", "Score"))
+    for r in data["sensor_delay_sweep"]:
+        print("%-12s %8.0f %10.2f %9.2f %9.2f %7.3f" % (r["label"], r["sensor_delay_s"], r["overshoot_C"],
+                                                         r["settling_minutes"], r["minutes_above_26C"], r["stress_score"]))
+
+
 if __name__ == "__main__":
     main()
+    print_sweep(Path(__file__).parent / "results" / "pid_results.json")
