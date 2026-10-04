@@ -48,6 +48,8 @@
   "@type": "ScholarlyArticle",
   "headline": "LEAF-Link: a concept study on plant stress data for NASA's LEAF lunar payload",
   "datePublished": "2026-10-03",
+  "dateModified": "2026-10-04",
+  "version": "1.1",
   "author": { "@type": "Person", "name": "Arjun" },
   "publisher": { "@type": "Organization", "name": "Null Set Labs", "url": "https://nullsetlabs.org/" },
   "url": "https://robotics.nullsetlabs.org/leaf-link/",
@@ -58,8 +60,11 @@
 }
 </script>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
   :root {
     --bg: #0a0a0f; --surface: #15151d; --surface-2: #1d1d27;
@@ -116,8 +121,16 @@
     letter-spacing: -0.6px; line-height: 1.08; }
   .hero-tagline { font-family: 'Newsreader', serif; font-style: italic; font-size: 21px; color: var(--text-dim);
     margin-top: 14px; line-height: 1.45; }
-  .byline { margin-top: 16px; font-size: 14px; color: var(--text-dim); }
-  .byline strong { color: var(--text); font-weight: 600; }
+  .meta-row { margin-top: 20px; padding: 14px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: 14px; }
+  .meta-row dt { font-size: 12px; color: var(--text-dim); margin-bottom: 2px; }
+  .meta-row dd { color: var(--text); }
+  .meta-row a { color: var(--accent-bright); text-decoration: underline; text-decoration-color: var(--accent-border); text-underline-offset: 3px; }
+  .cite-text { font-family: 'Newsreader', serif; font-size: 18px; line-height: 1.55; padding: 18px 20px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 12px; }
+  .cite-text a { color: var(--accent-bright); word-break: break-all; }
+  pre.bibtex { margin-top: 10px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.6; color: var(--text); overflow-x: auto; }
 
   /* Content */
   .content { max-width: var(--max-text); margin: 0 auto; padding: 8px 24px 56px; }
@@ -254,6 +267,8 @@
     .facts tr { display: block; padding: 8px 0; border-bottom: 1px solid var(--border); }
     figure.fig { padding: 14px 12px 10px; margin-left: -4px; margin-right: -4px; }
     .tiles { grid-template-columns: 1fr; }
+    .meta-row { gap: 8px 20px; font-size: 13.5px; }
+    .cite-text { font-size: 16px; padding: 14px 16px; }
     .status-card { padding: 18px; }
     .status-card-body { font-size: 16.5px; }
     .versions { padding: 24px 16px 40px; }
@@ -308,7 +323,13 @@
   </div>
   <h1>LEAF-Link</h1>
   <p class="hero-tagline">A concept study on forecasting plant stress for NASA's LEAF lunar plant payload, tested on public spaceflight data.</p>
-  <p class="byline">Independent research by <strong>Arjun</strong>, Null Set Labs.</p>
+  <dl class="meta-row">
+    <div><dt>Author</dt><dd>Arjun, Null Set Labs (independent research)</dd></div>
+    <div><dt>Published</dt><dd>October 3, 2026</dd></div>
+    <div><dt>Updated</dt><dd>October 4, 2026</dd></div>
+    <div><dt>Version</dt><dd>1.1</dd></div>
+    <div><dt>Links</dt><dd><a href="#cite">Cite this page</a> &middot; <a href="https://github.com/nullsetlabs/robotics-nullsetlabs/tree/main/leaf-link/analysis">Code and results</a> &middot; <a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-37">Data</a></dd></div>
+  </dl>
 </header>
 
 <main class="content">
@@ -330,7 +351,7 @@
 
   <section class="content-section" id="background">
     <div class="section-label">01 &middot; Background</div>
-    <h2 class="section-title">The LEAF payload and the question.</h2>
+    <h2 class="section-title">The LEAF payload and the question</h2>
     <div class="prose">
       <p>In March 2024 NASA selected Lunar Effects on Agricultural Flora (LEAF) as one of the first instruments for astronauts to deploy on the lunar surface under Artemis. Led by Space Lab Technologies, it is the first experiment designed to observe plant photosynthesis, growth and systemic stress responses in space radiation and partial gravity.<sup class="cite"><a href="#ref-1">1</a></sup> Its growth chamber holds <em>Arabidopsis thaliana</em>, red and green varieties of <em>Brassica rapa</em>, and the duckweed <em>Wolffia</em>.<sup class="cite"><a href="#ref-2">2</a></sup></p>
       <p>LEAF-Link asked whether a plant habitat could act on stress before it becomes visible. The design has three parts: define plant stress states from gene expression; train a model that predicts those states from the chamber's ordinary sensor readings; and let the chamber controller respond when predicted stress rises. This study tested what public data allows: whether spaceflight gene expression gives a usable stress label, and how a chamber controller responds to a routine setpoint change, with and without a delay in its temperature reading.</p>
@@ -339,7 +360,7 @@
 
   <section class="content-section" id="data">
     <div class="section-label">02 &middot; Data</div>
-    <h2 class="section-title">NASA OSDR study OSD-37.</h2>
+    <h2 class="section-title">NASA OSDR study OSD-37</h2>
     <table class="facts">
       <tr><th scope="row">Study</th><td>Comparison of the spaceflight transcriptome of four commonly used <em>Arabidopsis thaliana</em> ecotypes<sup class="cite"><a href="#ref-3">3</a></sup></td></tr>
       <tr><th scope="row">Mission and hardware</th><td>SpaceX CRS-4 to the International Space Station, September 21 to October 25, 2014; Biological Research in Canister (BRIC) hardware</td></tr>
@@ -352,7 +373,7 @@
 
   <section class="content-section" id="methods">
     <div class="section-label">03 &middot; Methods</div>
-    <h2 class="section-title">Five analyses.</h2>
+    <h2 class="section-title">Five analyses</h2>
     <div class="prose">
       <ol>
         <li><strong>Principal component analysis.</strong> Counts were transformed as log2(count + 1); the 5,000 most variable genes were kept and each was scaled to mean 0 and standard deviation 1. For each component, the share of its variance explained by strain and by spaceflight was computed as eta squared (between-group sum of squares over total sum of squares). The same steps were repeated within each strain.</li>
@@ -367,7 +388,7 @@
 
   <section class="content-section" id="results">
     <div class="section-label">04 &middot; Results</div>
-    <h2 class="section-title">Strain dominates; the spaceflight signal is secondary but clear.</h2>
+    <h2 class="section-title">Strain dominates; the spaceflight signal is secondary but clear</h2>
 
     <h3 class="sub">Structure of the data</h3>
     <figure class="fig" id="fig1">
@@ -452,7 +473,7 @@
 
   <section class="content-section" id="conclusions">
     <div class="section-label">05 &middot; Conclusions</div>
-    <h2 class="section-title">What the study shows.</h2>
+    <h2 class="section-title">What the study shows</h2>
     <div class="prose">
       <ol>
         <li><strong>Strain is the largest source of variation in this dataset.</strong> With the 5,000-gene filter, the first two components (16.4% and 14.4% of variance) follow strain at 81% and 94%; strain explained at least 77% of PC2 under every gene filter tested. This agrees with the original study's emphasis on natural variation.<sup class="cite"><a href="#ref-4">4</a></sup></li>
@@ -466,7 +487,7 @@
 
   <section class="content-section" id="limitations">
     <div class="section-label">06 &middot; Limitations</div>
-    <h2 class="section-title">Limits of these results.</h2>
+    <h2 class="section-title">Limits of these results</h2>
     <div class="prose">
       <ul>
         <li>One experiment, one species and 8-day-old seedlings. Flight and ground differ in several ways at once (microgravity, radiation, hardware handling, return), so "spaceflight" is a compound condition rather than a single stress.</li>
@@ -481,7 +502,7 @@
 
   <section class="content-section" id="status">
     <div class="section-label">07 &middot; Status and materials</div>
-    <h2 class="section-title">Completed, October 2026.</h2>
+    <h2 class="section-title">Status and materials</h2>
     <div class="status-card">
       <div class="status-card-label">Current status</div>
       <p class="status-card-body">The concept study is finished and will not be extended by the lab. The analysis code, results and this write-up are public; the questions it leaves open (transfer across species and experiments, the sensor-to-stress link, and controller tuning against measured sensor delay) are free for anyone to take up.</p>
@@ -490,6 +511,22 @@
         <a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-37">OSD-37 data at NASA OSDR</a>
       </div>
     </div>
+  </section>
+
+  <section class="content-section" id="cite">
+    <div class="section-label">Cite this page</div>
+    <p class="cite-text">Arjun. <em>LEAF-Link: a concept study on plant stress data for NASA's LEAF lunar payload.</em> Null Set Labs, version 1.1, October 3, 2026. <a href="https://robotics.nullsetlabs.org/leaf-link/">https://robotics.nullsetlabs.org/leaf-link/</a></p>
+    <details class="numbers"><summary>BibTeX</summary>
+<pre class="bibtex">@misc{nullsetlabs2026leaflink,
+  author       = {Arjun},
+  title        = {{LEAF-Link}: a concept study on plant stress data for {NASA}'s {LEAF} lunar payload},
+  howpublished = {Null Set Labs},
+  year         = {2026},
+  month        = oct,
+  note         = {Version 1.1},
+  url          = {https://robotics.nullsetlabs.org/leaf-link/}
+}</pre>
+    </details>
   </section>
 
   <section class="content-section" id="references">
